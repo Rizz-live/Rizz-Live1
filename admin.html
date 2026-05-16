@@ -10,7 +10,7 @@
 :root{
   --bg:#080818;--bg2:#0f0f25;--card:#12122a;--border:#ffffff18;
   --orange:#ff6b35;--gold:#ffd700;--pink:#ff4d80;--cyan:#00e5ff;
-  --green:#22c55e;--text:#eee;--muted:#888;
+  --green:#22c55e;--purple:#b44fff;--text:#eee;--muted:#888;
 }
 body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min-height:100vh}
 
@@ -46,6 +46,7 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .btn-logout{background:#ff4d8022;color:#ff4d80;border:1px solid #ff4d8044}
 .btn-import{background:#00e5ff22;color:#00e5ff;border:1px solid #00e5ff44}
 .btn-green{background:#22c55e22;color:#22c55e;border:1px solid #22c55e44}
+.btn-purple{background:#b44fff22;color:#b44fff;border:1px solid #b44fff44}
 .btn-sm:hover{filter:brightness(1.2);transform:translateY(-1px)}
 
 /* SIZE METER */
@@ -58,10 +59,10 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 
 .admin-body{max-width:960px;margin:0 auto;padding:20px 16px 80px}
 
-/* PAGE TABS (Honour Wall / Sellers) */
+/* PAGE TABS */
 .page-tabs{display:flex;gap:0;margin-bottom:20px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .page-tab{flex:1;padding:11px 16px;background:transparent;border:none;font-family:'Poppins',sans-serif;
-  font-size:13px;font-weight:700;cursor:pointer;transition:.2s;letter-spacing:.5px;color:var(--muted)}
+  font-size:12px;font-weight:700;cursor:pointer;transition:.2s;letter-spacing:.5px;color:var(--muted)}
 .page-tab.active{background:linear-gradient(135deg,#ff6b3530,#ff4d8030);color:var(--orange)}
 .page-tab:not(:last-child){border-right:1px solid var(--border)}
 
@@ -72,8 +73,9 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
   padding:10px 16px;font-size:12px;color:#ffb347;margin-bottom:16px;line-height:1.7}
 .admin-notice code{background:#ffffff15;padding:1px 5px;border-radius:4px;color:#fff}
 .admin-notice.green{background:#22c55e15;border-color:#22c55e40;color:#86efac}
+.admin-notice.purple{background:#b44fff15;border-color:#b44fff40;color:#d4a0ff}
 
-/* TABS (sections) */
+/* TABS */
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
 .tab-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);
   background:transparent;color:var(--muted);font-size:11px;font-weight:600;
@@ -117,6 +119,9 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .field-input{width:100%;background:#080818;border:1px solid #ffffff18;border-radius:8px;
   padding:9px 12px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;transition:.2s}
 .field-input:focus{border-color:var(--orange)}
+.field-select{width:100%;background:#080818;border:1px solid #ffffff18;border-radius:8px;
+  padding:9px 12px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;outline:none;transition:.2s;cursor:pointer}
+.field-select:focus{border-color:var(--purple)}
 
 /* LOGO SECTION */
 .logo-section{background:var(--card);border:1px solid var(--border);border-radius:14px;
@@ -128,16 +133,13 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .compress-badge{display:inline-flex;align-items:center;gap:5px;background:#00e5ff15;border:1px solid #00e5ff40;border-radius:8px;color:#00e5ff;font-size:10px;font-weight:700;padding:4px 10px;margin-top:6px}
 .png-badge{display:inline-flex;align-items:center;gap:5px;background:#ffd70015;border:1px solid #ffd70040;border-radius:8px;color:#ffd700;font-size:10px;font-weight:700;padding:4px 10px;margin-top:4px}
 
-/* ═══════════════════════════════
-   SELLERS SECTION
-═══════════════════════════════ */
+/* SELLERS */
 .sellers-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
 .sellers-header-title{font-family:'Orbitron',sans-serif;font-size:15px;color:#22c55e;font-weight:900}
 .btn-add-seller{background:linear-gradient(135deg,#22c55e,#16a34a);border:none;border-radius:10px;
   padding:9px 18px;color:#fff;font-size:12px;font-weight:700;font-family:'Poppins',sans-serif;
   cursor:pointer;letter-spacing:.5px;transition:.2s}
 .btn-add-seller:hover{filter:brightness(1.15);transform:translateY(-1px)}
-
 .seller-cards-list{display:flex;flex-direction:column;gap:14px}
 .seller-edit-card{background:var(--card);border:1px solid #22c55e30;border-radius:14px;overflow:hidden}
 .seller-edit-header{background:linear-gradient(90deg,#22c55e12,#16a34a08);border-bottom:1px solid #22c55e20;
@@ -146,36 +148,73 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .seller-edit-name-preview{font-size:13px;font-weight:700;color:#fff;flex:1;padding:0 10px}
 .seller-edit-body{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:580px){.seller-edit-body{grid-template-columns:1fr}}
-
 .seller-dp-zone{display:flex;flex-direction:column;align-items:center;gap:6px}
-.seller-dp-preview{width:80px;height:80px;border-radius:50%;object-fit:cover;
-  border:2.5px solid #22c55e;display:none}
-.seller-dp-placeholder{width:80px;height:80px;border-radius:50%;background:#0a0a20;
-  border:2px dashed #22c55e40;display:flex;align-items:center;justify-content:center;font-size:28px}
+.seller-dp-preview{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2.5px solid #22c55e;display:none}
+.seller-dp-placeholder{width:80px;height:80px;border-radius:50%;background:#0a0a20;border:2px dashed #22c55e40;display:flex;align-items:center;justify-content:center;font-size:28px}
 .seller-dp-upload{position:relative;overflow:hidden}
 .seller-dp-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .seller-fields{display:flex;flex-direction:column;gap:0}
 
-/* PRICE LIST EDITOR */
+/* PRICE LIST */
 .price-list-editor{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
 .price-list-title{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--gold);font-weight:700;margin-bottom:16px}
 .price-table{width:100%;border-collapse:collapse}
-.price-table th{background:#0a0a20;padding:9px 12px;font-size:10px;font-weight:700;
-  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);text-align:left}
+.price-table th{background:#0a0a20;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);text-align:left}
 .price-table td{padding:6px 6px;border-bottom:1px solid #ffffff08;vertical-align:middle}
 .price-table tr:last-child td{border-bottom:none}
-.price-input{width:100%;background:#080818;border:1px solid #ffffff18;border-radius:6px;
-  padding:7px 10px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;transition:.2s}
+.price-input{width:100%;background:#080818;border:1px solid #ffffff18;border-radius:6px;padding:7px 10px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;transition:.2s}
 .price-input:focus{border-color:var(--gold)}
 .pop-check{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
 .pop-check input{accent-color:var(--gold);width:14px;height:14px}
-.del-row-btn{background:#ff4d8015;border:1px solid #ff4d8030;border-radius:6px;color:#ff4d80;
-  font-size:11px;padding:5px 8px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap}
+.del-row-btn{background:#ff4d8015;border:1px solid #ff4d8030;border-radius:6px;color:#ff4d80;font-size:11px;padding:5px 8px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap}
 .del-row-btn:hover{background:#ff4d8030}
-.add-row-btn{background:#ffd70015;border:1px solid #ffd70040;border-radius:8px;color:#ffd700;
-  font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;font-family:'Poppins',sans-serif;
-  margin-top:10px;transition:.2s}
+.add-row-btn{background:#ffd70015;border:1px solid #ffd70040;border-radius:8px;color:#ffd700;font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:10px;transition:.2s}
 .add-row-btn:hover{background:#ffd70025}
+
+/* ═══════════════════════════
+   VIP CARNIVAL STYLES
+═══════════════════════════ */
+.vip-section-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.vip-section-title{font-family:'Orbitron',sans-serif;font-size:15px;color:var(--purple);font-weight:900}
+
+.vip-info-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.vip-info-title{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--purple);font-weight:700;margin-bottom:16px;letter-spacing:1px}
+
+.vip-mascot-section{background:var(--card);border:1px solid #b44fff30;border-radius:14px;padding:20px;margin-bottom:18px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.vip-mascot-preview{width:100px;height:100px;object-fit:contain;border-radius:12px;border:2px solid var(--purple);display:none}
+.vip-mascot-placeholder{width:100px;height:100px;border-radius:12px;background:#1a0a3e;border:2px dashed #b44fff40;display:flex;align-items:center;justify-content:center;font-size:36px}
+
+/* VIP Tiers Editor */
+.vip-tiers-wrap{display:flex;flex-direction:column;gap:12px}
+.vip-tier-card{background:#0a0a20;border:1px solid #b44fff22;border-radius:12px;overflow:hidden}
+.vip-tier-header{background:linear-gradient(90deg,rgba(180,79,255,.1),rgba(180,79,255,.05));border-bottom:1px solid #b44fff20;padding:10px 16px;display:flex;align-items:center;gap:10px}
+.vip-tier-num{font-family:'Orbitron',sans-serif;font-size:11px;color:var(--purple);font-weight:700;min-width:60px}
+.vip-tier-name-preview{font-size:13px;font-weight:700;color:#fff;flex:1}
+.vip-tier-body{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:580px){.vip-tier-body{grid-template-columns:1fr}}
+
+.tier-dp-col{display:flex;flex-direction:column;gap:8px}
+.tier-dp-preview-wrap{position:relative;width:70px;height:70px;margin:0 auto}
+.tier-dp-prev-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid var(--purple);display:none}
+.tier-dp-placeholder{width:70px;height:70px;border-radius:50%;background:#12122a;border:2px dashed #b44fff40;display:flex;align-items:center;justify-content:center;font-size:24px}
+.tier-frame-prev-img{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);object-fit:contain;pointer-events:none;z-index:2;display:none}
+
+.toggle-wrap{display:flex;align-items:center;gap:8px;margin-top:8px}
+.toggle-label{font-size:11px;color:var(--muted);font-weight:600}
+.toggle-switch{position:relative;width:36px;height:20px;cursor:pointer}
+.toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;border-radius:20px;background:#ffffff18;transition:.3s}
+.toggle-slider::before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;border-radius:50%;background:#666;transition:.3s}
+.toggle-switch input:checked + .toggle-slider{background:var(--purple)}
+.toggle-switch input:checked + .toggle-slider::before{transform:translateX(16px);background:#fff}
+
+/* Rules Editor */
+.rules-editor{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.rules-editor-title{font-family:'Orbitron',sans-serif;font-size:12px;color:var(--gold);font-weight:700;margin-bottom:14px}
+.rule-edit-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rule-edit-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#b44fff);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.rule-edit-input{flex:1;background:#080818;border:1px solid #ffffff18;border-radius:8px;padding:8px 12px;color:#fff;font-size:12px;font-family:'Poppins',sans-serif;outline:none;transition:.2s}
+.rule-edit-input:focus{border-color:var(--purple)}
 
 /* TOAST */
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
@@ -185,42 +224,39 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 #toast.show{opacity:1}
 
 /* EXPORT MODALS */
-#export-modal,#export-sellers-modal{display:none;position:fixed;inset:0;background:#000000bb;
+#export-modal,#export-sellers-modal,#export-vip-modal{display:none;position:fixed;inset:0;background:#000000bb;
   z-index:200;align-items:center;justify-content:center}
-#export-modal.open,#export-sellers-modal.open{display:flex}
+#export-modal.open,#export-sellers-modal.open,#export-vip-modal.open{display:flex}
 .export-box{background:#12122a;border:1px solid var(--orange);border-radius:16px;
   padding:24px;width:90%;max-width:540px;max-height:85vh;overflow-y:auto}
 .export-box.green-border{border-color:#22c55e}
+.export-box.purple-border{border-color:var(--purple)}
 .export-box h3{font-family:'Orbitron',sans-serif;color:var(--orange);font-size:14px;margin-bottom:12px}
 .export-box.green-border h3{color:#22c55e}
+.export-box.purple-border h3{color:var(--purple)}
 .export-box textarea{width:100%;background:#080818;border:1px solid #ffffff22;border-radius:8px;
   color:#aaffaa;font-size:11px;font-family:monospace;padding:12px;min-height:160px;resize:vertical}
 .export-instructions{font-size:11px;color:#ffb347;line-height:1.7;margin-top:12px;
   background:#ff6b3510;border-radius:8px;padding:10px 14px;border:1px solid #ff6b3530}
 .export-instructions.green{background:#22c55e10;border-color:#22c55e30;color:#86efac}
-.export-instructions code{background:#ffffff15;padding:1px 5px;border-radius:4px;color:#fff}
+.export-instructions.purple{background:#b44fff10;border-color:#b44fff30;color:#d4a0ff}
 .export-size-info{background:#00e5ff10;border:1px solid #00e5ff30;border-radius:8px;
   padding:10px 14px;margin-bottom:12px;font-size:12px;color:#00e5ff}
 
-/* IMPORT MODAL */
-#import-modal{display:none;position:fixed;inset:0;background:#000000bb;
-  z-index:200;align-items:center;justify-content:center}
+/* IMPORT */
+#import-modal{display:none;position:fixed;inset:0;background:#000000bb;z-index:200;align-items:center;justify-content:center}
 #import-modal.open{display:flex}
-.import-box{background:#12122a;border:1px solid #00e5ff;border-radius:16px;
-  padding:24px;width:90%;max-width:500px}
+.import-box{background:#12122a;border:1px solid #00e5ff;border-radius:16px;padding:24px;width:90%;max-width:500px}
 .import-box h3{font-family:'Orbitron',sans-serif;color:#00e5ff;font-size:14px;margin-bottom:12px}
-.import-drop{border:2px dashed #00e5ff40;border-radius:12px;padding:30px;text-align:center;
-  cursor:pointer;position:relative;transition:.2s}
+.import-drop{border:2px dashed #00e5ff40;border-radius:12px;padding:30px;text-align:center;cursor:pointer;position:relative;transition:.2s}
 .import-drop:hover{border-color:#00e5ff;background:#00e5ff08}
 .import-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .import-status{font-size:12px;color:#00e5ff;margin-top:10px;min-height:18px;text-align:center}
 
-/* PROGRESS OVERLAY */
-#progress-overlay{display:none;position:fixed;inset:0;background:#000000cc;
-  z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+/* PROGRESS */
+#progress-overlay{display:none;position:fixed;inset:0;background:#000000cc;z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:16px}
 #progress-overlay.show{display:flex}
-.progress-box{background:#12122a;border:1px solid var(--orange);border-radius:16px;
-  padding:30px 40px;text-align:center}
+.progress-box{background:#12122a;border:1px solid var(--orange);border-radius:16px;padding:30px 40px;text-align:center}
 .progress-title{font-family:'Orbitron',sans-serif;color:var(--orange);font-size:13px;margin-bottom:16px}
 .progress-bar-bg{width:240px;height:8px;background:#ffffff10;border-radius:4px;overflow:hidden;margin:0 auto 10px}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,#ff6b35,#ff4d80);border-radius:4px;transition:width .2s}
@@ -233,10 +269,8 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .del-box h4{font-family:'Orbitron',sans-serif;color:#ff4d80;font-size:14px;margin-bottom:10px}
 .del-box p{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6}
 .del-actions{display:flex;gap:10px}
-.btn-del-confirm{flex:1;background:linear-gradient(135deg,#ff4d80,#cc1144);border:none;border-radius:8px;padding:10px;
-  color:#fff;font-size:13px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer}
-.btn-del-cancel{flex:1;background:#ffffff12;border:1px solid var(--border);border-radius:8px;padding:10px;
-  color:#fff;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer}
+.btn-del-confirm{flex:1;background:linear-gradient(135deg,#ff4d80,#cc1144);border:none;border-radius:8px;padding:10px;color:#fff;font-size:13px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer}
+.btn-del-cancel{flex:1;background:#ffffff12;border:1px solid var(--border);border-radius:8px;padding:10px;color:#fff;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer}
 </style>
 </head>
 <body>
@@ -262,6 +296,7 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
       <button class="btn-sm btn-save" onclick="saveAll()">💾 SAVE ALL</button>
       <button class="btn-sm btn-export" onclick="openExport()">📤 Honour JSON</button>
       <button class="btn-sm btn-green" onclick="openExportSellers()">📤 Sellers JSON</button>
+      <button class="btn-sm btn-purple" onclick="openExportVip()">📤 VIP JSON</button>
       <button class="btn-sm btn-logout" onclick="doLogout()">LOGOUT</button>
     </div>
   </div>
@@ -278,9 +313,10 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
     <div class="page-tabs">
       <button class="page-tab active" onclick="switchPage('honour',this)">🏆 Honour Wall</button>
       <button class="page-tab" onclick="switchPage('sellers',this)">💰 Coin Sellers</button>
+      <button class="page-tab" onclick="switchPage('vip',this)">👑 VIP Carnival</button>
     </div>
 
-    <!-- ═══════ HONOUR WALL SECTION ═══════ -->
+    <!-- ═══ HONOUR WALL ═══ -->
     <div class="page-section visible" id="page-honour">
       <div class="admin-notice">
         ℹ️ <strong>Auto-Compress ON:</strong> DP images compress hoti hain (220×220px, 70% JPEG). <strong>Frame images PNG mein rahegi.</strong><br>
@@ -310,14 +346,13 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
       <div id="sections-area"></div>
     </div>
 
-    <!-- ═══════ SELLERS SECTION ═══════ -->
+    <!-- ═══ SELLERS ═══ -->
     <div class="page-section" id="page-sellers">
       <div class="admin-notice green">
         ℹ️ <strong>Sellers Manage Karo:</strong> Add/Edit/Delete sellers. DP upload hogi (auto-compress).<br>
         📋 <strong>Flow:</strong> Sellers edit karo → <strong>SAVE ALL</strong> → <strong>Sellers JSON</strong> export karo → <code>rizz-sellers.json</code> GitHub mein upload karo.
       </div>
 
-      <!-- PRICE LIST EDITOR -->
       <div class="price-list-editor">
         <div class="price-list-title">💲 Coin Price List (Sab Sellers ke liye same)</div>
         <table class="price-table" id="price-table">
@@ -327,7 +362,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
         <button class="add-row-btn" onclick="addPriceRow()">+ Row Add Karo</button>
       </div>
 
-      <!-- SELLERS LIST -->
       <div class="sellers-header">
         <div class="sellers-header-title">👥 Sellers List</div>
         <button class="btn-add-seller" onclick="addNewSeller()">+ Seller Add Karo</button>
@@ -335,13 +369,69 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
       <div class="seller-cards-list" id="seller-cards-list"></div>
     </div>
 
-  </div>
-</div>
+    <!-- ═══ VIP CARNIVAL ═══ -->
+    <div class="page-section" id="page-vip">
+      <div class="admin-notice purple">
+        👑 <strong>VIP Carnival Manage Karo:</strong> Mascot, tiers, frame DP aur rules edit karo.<br>
+        📋 <strong>Flow:</strong> Data bharo → <strong>SAVE ALL</strong> → <strong>VIP JSON</strong> export karo → <code>rizz-vip.json</code> GitHub mein upload karo.
+      </div>
+
+      <!-- Mascot Upload -->
+      <div class="vip-mascot-section">
+        <div>
+          <img id="vip-mascot-preview" class="vip-mascot-preview" src="" alt="Mascot">
+          <div id="vip-mascot-placeholder" class="vip-mascot-placeholder">🦊</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Mascot / Character</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Hero section mein dikhega (PNG transparent best hai)</div>
+          <div class="png-badge">🖼 PNG Transparent recommended</div><br>
+          <div class="compress-badge" style="margin-top:6px">⚡ Auto-compress: 400×400</div><br>
+          <label class="logo-change-btn btn-sm btn-purple" style="cursor:pointer;display:inline-block;padding:7px 16px;margin-top:8px">
+            📁 Mascot Upload Karo
+            <input type="file" accept="image/*" onchange="handleMascotUpload(this)">
+          </label>
+          <span id="mascot-size-tag" class="img-size-tag" style="display:block;margin-top:4px"></span>
+          <div id="mascot-clear-wrap" style="display:none;margin-top:6px">
+            <button class="clear-btn" style="width:auto;padding:4px 12px" onclick="clearMascot()">✕ Mascot Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Info -->
+      <div class="vip-info-card">
+        <div class="vip-info-title">📝 Page Info</div>
+        <div class="field-label">EVENT TITLE</div>
+        <input class="field-input" id="vip-title" value="VIP Carnival" oninput="vipState.title=this.value" placeholder="e.g. VIP Carnival">
+        <div class="field-label">TAGLINE</div>
+        <input class="field-input" id="vip-tagline" value="Recharge More, Unlock More!" oninput="vipState.tagline=this.value" placeholder="e.g. Recharge More, Unlock More!">
+        <div class="field-label">WEEK TITLE (table heading)</div>
+        <input class="field-input" id="vip-week-title" value="Weekly — Rizz Live VIP Carnival" oninput="vipState.weekTitle=this.value" placeholder="e.g. Weekly — Rizz Live VIP Carnival">
+      </div>
+
+      <!-- Tiers -->
+      <div style="margin-bottom:16px">
+        <div class="vip-section-header">
+          <div class="vip-section-title">🏅 VIP Tiers</div>
+        </div>
+        <div class="vip-tiers-wrap" id="vip-tiers-wrap"></div>
+      </div>
+
+      <!-- Rules -->
+      <div class="rules-editor">
+        <div class="rules-editor-title">📋 Rules</div>
+        <div id="rules-editor-list"></div>
+        <button class="add-row-btn" onclick="addRule()">+ Rule Add Karo</button>
+      </div>
+    </div>
+
+  </div><!-- /admin-body -->
+</div><!-- /admin-screen -->
 
 <!-- TOAST -->
 <div id="toast">✅ Saved!</div>
 
-<!-- PROGRESS OVERLAY -->
+<!-- PROGRESS -->
 <div id="progress-overlay">
   <div class="progress-box">
     <div class="progress-title">⚡ PROCESSING...</div>
@@ -353,8 +443,8 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 <!-- DELETE CONFIRM -->
 <div id="delete-confirm">
   <div class="del-box">
-    <h4>⚠️ Seller Delete?</h4>
-    <p id="del-confirm-msg">Kya aap sach mein is seller ko delete karna chahte hain?</p>
+    <h4>⚠️ Delete?</h4>
+    <p id="del-confirm-msg">Kya aap sach mein delete karna chahte hain?</p>
     <div class="del-actions">
       <button class="btn-del-confirm" id="del-confirm-btn">हाँ, Delete Karo</button>
       <button class="btn-del-cancel" onclick="closeDeleteConfirm()">Cancel</button>
@@ -362,47 +452,61 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
   </div>
 </div>
 
-<!-- EXPORT MODAL (Honour) -->
+<!-- EXPORT — HONOUR -->
 <div id="export-modal">
   <div class="export-box">
     <h3>📤 EXPORT — rizz-data.json (Honour Wall)</h3>
     <div class="export-size-info" id="export-size-info">Calculating...</div>
     <textarea id="export-ta" readonly></textarea>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-      <button class="btn-sm btn-save" onclick="downloadJSON()">⬇️ Download rizz-data.json</button>
+      <button class="btn-sm btn-save" onclick="downloadJSON()">⬇️ Download</button>
       <button class="btn-sm btn-export" onclick="copyJSON()">📋 Copy</button>
       <button class="btn-sm btn-logout" onclick="closeExport()">✕ Close</button>
     </div>
     <div class="export-instructions">
-      <strong>📋 GitHub Par Upload Karo:</strong><br>
-      1. <code>rizz-data.json</code> download karo<br>
-      2. GitHub repo mein <code>index.html</code> ke saath same folder mein upload karo<br>
-      3. Commit karo — changes live ho jayenge!
+      Upload <code>rizz-data.json</code> to GitHub repo same folder as <code>index.html</code>.
     </div>
   </div>
 </div>
 
-<!-- EXPORT MODAL (Sellers) -->
+<!-- EXPORT — SELLERS -->
 <div id="export-sellers-modal">
   <div class="export-box green-border">
-    <h3>📤 EXPORT — rizz-sellers.json (Coin Sellers)</h3>
+    <h3>📤 EXPORT — rizz-sellers.json</h3>
     <div class="export-size-info" id="export-sellers-size-info">Calculating...</div>
     <textarea id="export-sellers-ta" readonly></textarea>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-      <button class="btn-sm btn-green" onclick="downloadSellersJSON()">⬇️ Download rizz-sellers.json</button>
+      <button class="btn-sm btn-green" onclick="downloadSellersJSON()">⬇️ Download</button>
       <button class="btn-sm btn-export" onclick="copySellersJSON()">📋 Copy</button>
       <button class="btn-sm btn-logout" onclick="closeExportSellers()">✕ Close</button>
     </div>
     <div class="export-instructions green">
-      <strong>📋 GitHub Par Upload Karo:</strong><br>
-      1. <code>rizz-sellers.json</code> download karo<br>
-      2. GitHub repo mein <code>sellers.html</code> ke saath same folder mein upload karo<br>
-      3. Commit karo — Sellers page live update ho jayega!
+      Upload <code>rizz-sellers.json</code> same folder as <code>sellers.html</code>.
     </div>
   </div>
 </div>
 
-<!-- IMPORT MODAL -->
+<!-- EXPORT — VIP -->
+<div id="export-vip-modal">
+  <div class="export-box purple-border">
+    <h3>📤 EXPORT — rizz-vip.json (VIP Carnival)</h3>
+    <div class="export-size-info" id="export-vip-size-info">Calculating...</div>
+    <textarea id="export-vip-ta" readonly></textarea>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn-sm btn-purple" onclick="downloadVipJSON()">⬇️ Download rizz-vip.json</button>
+      <button class="btn-sm btn-export" onclick="copyVipJSON()">📋 Copy</button>
+      <button class="btn-sm btn-logout" onclick="closeExportVip()">✕ Close</button>
+    </div>
+    <div class="export-instructions purple">
+      <strong>📋 GitHub Par Upload Karo:</strong><br>
+      1. <code>rizz-vip.json</code> download karo<br>
+      2. GitHub repo mein <code>vip.html</code> ke saath same folder mein upload karo<br>
+      3. Commit karo — VIP Carnival live update ho jayega!
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT -->
 <div id="import-modal">
   <div class="import-box">
     <h3>📥 IMPORT JSON</h3>
@@ -410,7 +514,7 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
       <input type="file" accept=".json,application/json" onchange="handleImport(this)">
       <div style="font-size:28px;margin-bottom:8px">📂</div>
       <div style="font-size:13px;color:#fff;margin-bottom:4px">JSON file yahan drop karo</div>
-      <div style="font-size:11px;color:var(--muted)">rizz-data.json ya rizz-sellers.json</div>
+      <div style="font-size:11px;color:var(--muted)">rizz-data.json / rizz-sellers.json / rizz-vip.json</div>
     </div>
     <div class="import-status" id="import-status"></div>
     <div style="display:flex;gap:8px;margin-top:14px">
@@ -420,150 +524,162 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 </div>
 
 <script>
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  CONFIG
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 const ADMIN_PASS = 'rizz2024';
-const IMG_MAX_SIZE = 220, IMG_QUALITY = 0.70;
-const FRAME_MAX = 300, LOGO_MAX = 300, LOGO_QUALITY = 0.82;
-const SELLER_DP_MAX = 280, SELLER_DP_QUALITY = 0.75;
+const IMG_MAX_SIZE=220, IMG_QUALITY=0.70;
+const FRAME_MAX=300, LOGO_MAX=300, LOGO_QUALITY=0.82;
+const SELLER_DP_MAX=280, SELLER_DP_QUALITY=0.75;
+const MASCOT_MAX=400, MASCOT_QUALITY=0.88;
+const TIER_DP_MAX=220, TIER_DP_QUALITY=0.72;
 
 const SECTIONS = [
-  { key:'agency',     emoji:'🏆', title:'Top 3 Agency',          week:'Week 1st',               statLabel:'Ruby Target',    statType:'ruby' },
-  { key:'host',       emoji:'🎤', title:'Top 3 Host',             week:'Week 1st',               statLabel:'Ruby Target',    statType:'ruby' },
-  { key:'recharger',  emoji:'💰', title:'Top 3 Recharger',        week:'Week 1st',               statLabel:'Weekly Recharge',statType:'coin' },
-  { key:'gifter',     emoji:'🎁', title:'Top 3 Gifter',           week:'Week 1st',               statLabel:'Ruby',           statType:'ruby' },
-  { key:'activehost', emoji:'🔴', title:'Top 3 Active Host',      week:'Sabse Zyada Live Time',  statLabel:'Live Time',      statType:'clock' },
-  { key:'newagency',  emoji:'🌟', title:'New Top 3 Agency',       week:'Naye Agency — Week 1st', statLabel:'Ruby Target',    statType:'ruby' },
-  { key:'agencytime', emoji:'⏱', title:'Top 3 Agency App Time',  week:'Sabse Zyada App Par Samay', statLabel:'App Time',   statType:'clock' },
+  {key:'agency',emoji:'🏆',title:'Top 3 Agency',week:'Week 1st',statLabel:'Ruby Target',statType:'ruby'},
+  {key:'host',emoji:'🎤',title:'Top 3 Host',week:'Week 1st',statLabel:'Ruby Target',statType:'ruby'},
+  {key:'recharger',emoji:'💰',title:'Top 3 Recharger',week:'Week 1st',statLabel:'Weekly Recharge',statType:'coin'},
+  {key:'gifter',emoji:'🎁',title:'Top 3 Gifter',week:'Week 1st',statLabel:'Ruby',statType:'ruby'},
+  {key:'activehost',emoji:'🔴',title:'Top 3 Active Host',week:'Sabse Zyada Live Time',statLabel:'Live Time',statType:'clock'},
+  {key:'newagency',emoji:'🌟',title:'New Top 3 Agency',week:'Naye Agency — Week 1st',statLabel:'Ruby Target',statType:'ruby'},
+  {key:'agencytime',emoji:'⏱',title:'Top 3 Agency App Time',week:'Sabse Zyada App Par Samay',statLabel:'App Time',statType:'clock'},
 ];
-const RANKS = [1,2,3];
-const RANK_LABEL = {1:'🥇 GOLD',2:'🥈 SILVER',3:'🥉 BRONZE'};
+const RANKS=[1,2,3];
+const RANK_LABEL={1:'🥇 GOLD',2:'🥈 SILVER',3:'🥉 BRONZE'};
+
+const DEFAULT_VIP_TIERS = [
+  {recharge:'300K',vipName:'Ranger',frameEnabled:false,dp:'',framePng:'',specialId:'-'},
+  {recharge:'700K',vipName:'Knight',frameEnabled:false,dp:'',framePng:'',specialId:'-'},
+  {recharge:'1M',  vipName:'Lord',  frameEnabled:false,dp:'',framePng:'',specialId:'6 Digits'},
+  {recharge:'3M',  vipName:'Duke',  frameEnabled:false,dp:'',framePng:'',specialId:'5 Digits'},
+  {recharge:'5M',  vipName:'King',  frameEnabled:true, dp:'',framePng:'',specialId:'4 Digits'},
+  {recharge:'10M', vipName:'Emperor',frameEnabled:true,dp:'',framePng:'',specialId:'3 Digits'},
+];
+const VIP_NAMES = ['Ranger','Knight','Lord','Duke','King','Emperor'];
 
 const DEFAULT_PRICE_LIST = [
-  { inr:'₹109',   coins:'10,000',   popular:false },
-  { inr:'₹217',   coins:'20,000',   popular:false },
-  { inr:'₹544',   coins:'50,000',   popular:false },
-  { inr:'₹1,085', coins:'1,00,000', popular:true,  popularTag:'★ Popular' },
-  { inr:'₹1,627', coins:'1,50,000', popular:false },
-  { inr:'₹2,170', coins:'2,00,000', popular:false },
-  { inr:'₹5,422', coins:'5,00,000', popular:false },
-  { inr:'₹7,592', coins:'7,00,000', popular:false },
-  { inr:'₹10,845',coins:'10,00,000',popular:true,  popularTag:'★ Best Value' },
+  {inr:'₹109',coins:'10,000',popular:false},
+  {inr:'₹217',coins:'20,000',popular:false},
+  {inr:'₹544',coins:'50,000',popular:false},
+  {inr:'₹1,085',coins:'1,00,000',popular:true,popularTag:'★ Popular'},
+  {inr:'₹1,627',coins:'1,50,000',popular:false},
+  {inr:'₹2,170',coins:'2,00,000',popular:false},
+  {inr:'₹5,422',coins:'5,00,000',popular:false},
+  {inr:'₹7,592',coins:'7,00,000',popular:false},
+  {inr:'₹10,845',coins:'10,00,000',popular:true,popularTag:'★ Best Value'},
 ];
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  STATE
-// ══════════════════════════════════════════════════
-let state = {};       // Honour Wall data
-let sellersState = {}; // Sellers data
+// ══════════════════════════════
+let state={}, sellersState={}, vipState={};
 
 function defaultState(){
-  const s = { logo:'', sections:{} };
-  SECTIONS.forEach(sec => {
-    s.sections[sec.key] = { week: sec.week, ranks:{} };
-    RANKS.forEach(r => { s.sections[sec.key].ranks[r] = { name:'', stat:'', dp:'', frame:'' }; });
+  const s={logo:'',sections:{}};
+  SECTIONS.forEach(sec=>{
+    s.sections[sec.key]={week:sec.week,ranks:{}};
+    RANKS.forEach(r=>{s.sections[sec.key].ranks[r]={name:'',stat:'',dp:'',frame:''};});
   });
   return s;
 }
-
-function defaultSellersState(){
+function defaultSellersState(){ return {sellers:[],priceList:JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST))}; }
+function defaultVipState(){
   return {
-    sellers: [],
-    priceList: JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST))
+    mascot:'',title:'VIP Carnival',tagline:'Recharge More, Unlock More!',
+    weekTitle:'Weekly — Rizz Live VIP Carnival',
+    tiers:JSON.parse(JSON.stringify(DEFAULT_VIP_TIERS)),
+    rules:[
+      'Rewards will be sent every week before Wednesday.',
+      'Special ID & customized frame needs to be applied by the user via official.',
+      'Recharge will be calculated based on both online & offline.'
+    ]
   };
 }
 
 function loadState(){
-  try { const raw = localStorage.getItem('rizz_admin_v2'); state = raw ? JSON.parse(raw) : defaultState(); }
-  catch(e){ state = defaultState(); }
-  try { const raw = localStorage.getItem('rizz_sellers_v1'); sellersState = raw ? JSON.parse(raw) : defaultSellersState(); }
-  catch(e){ sellersState = defaultSellersState(); }
-  if(!sellersState.priceList || !sellersState.priceList.length) sellersState.priceList = JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST));
-  if(!sellersState.sellers) sellersState.sellers = [];
+  try{const r=localStorage.getItem('rizz_admin_v2');state=r?JSON.parse(r):defaultState();}catch(e){state=defaultState();}
+  try{const r=localStorage.getItem('rizz_sellers_v1');sellersState=r?JSON.parse(r):defaultSellersState();}catch(e){sellersState=defaultSellersState();}
+  if(!sellersState.priceList||!sellersState.priceList.length) sellersState.priceList=JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST));
+  if(!sellersState.sellers) sellersState.sellers=[];
+  try{const r=localStorage.getItem('rizz_vip_v1');vipState=r?JSON.parse(r):defaultVipState();}catch(e){vipState=defaultVipState();}
+  if(!vipState.tiers||!vipState.tiers.length) vipState.tiers=JSON.parse(JSON.stringify(DEFAULT_VIP_TIERS));
+  if(!vipState.rules) vipState.rules=['Rewards will be sent every week before Wednesday.','Special ID & customized frame needs to be applied by the user via official.','Recharge will be calculated based on both online & offline.'];
 }
 
 function saveState(){
-  try { localStorage.setItem('rizz_admin_v2', JSON.stringify(state)); }
-  catch(e){ showToast('⚠️ Browser storage full! Export JSON abhi.'); }
-  try { localStorage.setItem('rizz_sellers_v1', JSON.stringify(sellersState)); }
-  catch(e){ showToast('⚠️ Sellers storage full!'); }
+  try{localStorage.setItem('rizz_admin_v2',JSON.stringify(state));}catch(e){showToast('⚠️ Honour storage full!');}
+  try{localStorage.setItem('rizz_sellers_v1',JSON.stringify(sellersState));}catch(e){showToast('⚠️ Sellers storage full!');}
+  try{localStorage.setItem('rizz_vip_v1',JSON.stringify(vipState));}catch(e){showToast('⚠️ VIP storage full!');}
 }
 
-function getJSONString(){ return JSON.stringify(state, null, 2); }
-function getSellersJSONString(){ return JSON.stringify(sellersState, null, 2); }
+function getJSONString(){return JSON.stringify(state,null,2);}
+function getSellersJSONString(){return JSON.stringify(sellersState,null,2);}
+function getVipJSONString(){return JSON.stringify(vipState,null,2);}
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  IMAGE COMPRESSION
-// ══════════════════════════════════════════════════
-function compressImage(file, maxPx, quality, forcePNG){
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = e => {
-      const img = new Image();
-      img.onerror = reject;
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        let w = img.width, h = img.height;
-        if(w > h){ if(w > maxPx){ h = Math.round(h*maxPx/w); w = maxPx; } }
-        else      { if(h > maxPx){ w = Math.round(w*maxPx/h); h = maxPx; } }
-        canvas.width = w; canvas.height = h;
-        const ctx = canvas.getContext('2d');
-        const isTransparent = forcePNG || (file && (file.type==='image/png'||file.type==='image/webp'));
-        if(!isTransparent){ ctx.fillStyle='#000'; ctx.fillRect(0,0,w,h); }
-        ctx.drawImage(img, 0, 0, w, h);
-        resolve(isTransparent ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', quality));
+// ══════════════════════════════
+function compressImage(file,maxPx,quality,forcePNG){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onerror=reject;
+    reader.onload=e=>{
+      const img=new Image();
+      img.onerror=reject;
+      img.onload=()=>{
+        const canvas=document.createElement('canvas');
+        let w=img.width,h=img.height;
+        if(w>h){if(w>maxPx){h=Math.round(h*maxPx/w);w=maxPx;}}else{if(h>maxPx){w=Math.round(w*maxPx/h);h=maxPx;}}
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');
+        const isT=forcePNG||(file&&(file.type==='image/png'||file.type==='image/webp'));
+        if(!isT){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);}
+        ctx.drawImage(img,0,0,w,h);
+        resolve(isT?canvas.toDataURL('image/png'):canvas.toDataURL('image/jpeg',quality));
       };
-      img.src = e.target.result;
+      img.src=e.target.result;
     };
     reader.readAsDataURL(file);
   });
 }
-
-function recompressBase64(b64, maxPx, quality, forcePNG){
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onerror = reject;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      let w=img.width, h=img.height;
-      if(w>h){ if(w>maxPx){ h=Math.round(h*maxPx/w); w=maxPx; } }
-      else    { if(h>maxPx){ w=Math.round(w*maxPx/h); h=maxPx; } }
-      canvas.width=w; canvas.height=h;
-      const ctx = canvas.getContext('2d');
-      const isTransparent = forcePNG||b64.startsWith('data:image/png')||b64.startsWith('data:image/webp');
-      if(!isTransparent){ ctx.fillStyle='#000'; ctx.fillRect(0,0,w,h); }
+function recompressBase64(b64,maxPx,quality,forcePNG){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onerror=reject;
+    img.onload=()=>{
+      const canvas=document.createElement('canvas');
+      let w=img.width,h=img.height;
+      if(w>h){if(w>maxPx){h=Math.round(h*maxPx/w);w=maxPx;}}else{if(h>maxPx){w=Math.round(w*maxPx/h);h=maxPx;}}
+      canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');
+      const isT=forcePNG||b64.startsWith('data:image/png')||b64.startsWith('data:image/webp');
+      if(!isT){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);}
       ctx.drawImage(img,0,0,w,h);
-      resolve(isTransparent ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg',quality));
+      resolve(isT?canvas.toDataURL('image/png'):canvas.toDataURL('image/jpeg',quality));
     };
-    img.src = b64;
+    img.src=b64;
   });
 }
+function b64SizeKB(b64){return b64?Math.round((b64.length*3/4)/1024):0;}
+function isPNG(b64){return b64&&b64.startsWith('data:image/png');}
 
-function b64SizeKB(b64){ return b64 ? Math.round((b64.length*3/4)/1024) : 0; }
-function isPNG(b64){ return b64 && b64.startsWith('data:image/png'); }
-
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  SIZE METER
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 function updateSizeMeter(){
-  const bytes = new Blob([getJSONString()]).size + new Blob([getSellersJSONString()]).size;
-  const mb = bytes/1024/1024, maxMb=24, pct=Math.min(100,(mb/maxMb)*100);
-  const fill=document.getElementById('size-fill'), label=document.getElementById('size-label');
-  if(!fill||!label) return;
-  fill.style.width = pct+'%';
+  const bytes=new Blob([getJSONString()]).size+new Blob([getSellersJSONString()]).size+new Blob([getVipJSONString()]).size;
+  const mb=bytes/1024/1024,maxMb=24,pct=Math.min(100,(mb/maxMb)*100);
+  const fill=document.getElementById('size-fill'),label=document.getElementById('size-label');
+  if(!fill||!label)return;
+  fill.style.width=pct+'%';
   let cls,col;
-  if(pct<60){cls='size-ok';col='#00e5ff';}
-  else if(pct<85){cls='size-warn';col='#ffd700';}
-  else{cls='size-bad';col='#ff4d80';}
-  fill.style.background=col; label.className='size-label '+cls;
-  label.textContent = mb.toFixed(1)+' MB / 25 MB';
+  if(pct<60){cls='size-ok';col='#00e5ff';}else if(pct<85){cls='size-warn';col='#ffd700';}else{cls='size-bad';col='#ff4d80';}
+  fill.style.background=col;label.className='size-label '+cls;
+  label.textContent=mb.toFixed(1)+' MB / 25 MB';
 }
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  AUTH
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 function doLogin(){
   if(document.getElementById('pw-input').value===ADMIN_PASS){
     document.getElementById('login-screen').style.display='none';
@@ -579,53 +695,52 @@ function doLogout(){
   document.getElementById('pw-input').value='';
 }
 
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  PAGE SWITCHING
-// ══════════════════════════════════════════════════
-function switchPage(page, btn){
+// ══════════════════════════════
+function switchPage(page,btn){
   document.querySelectorAll('.page-tab').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('visible'));
   btn.classList.add('active');
   document.getElementById('page-'+page).classList.add('visible');
 }
 
-// ══════════════════════════════════════════════════
-//  LOGO
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
+//  LOGO (Honour)
+// ══════════════════════════════
 async function handleLogoUpload(inp){
-  const file=inp.files[0]; if(!file) return;
+  const file=inp.files[0];if(!file)return;
   showProgress('Logo compress ho raha hai...',30);
-  try {
-    const compressed = await compressImage(file,LOGO_MAX,LOGO_QUALITY,false);
-    state.logo=compressed;
-    const prev=document.getElementById('logo-preview'), ph=document.getElementById('logo-placeholder');
-    prev.src=compressed; prev.style.display='block'; ph.style.display='none';
-    document.getElementById('logo-size-tag').textContent='✅ '+b64SizeKB(compressed)+' KB (compressed)';
-    saveState(); updateSizeMeter(); hideProgress();
-    showToast('Logo saved!');
-  } catch(e){ hideProgress(); showToast('❌ Logo error'); }
+  try{
+    const c=await compressImage(file,LOGO_MAX,LOGO_QUALITY,false);
+    state.logo=c;
+    const prev=document.getElementById('logo-preview'),ph=document.getElementById('logo-placeholder');
+    prev.src=c;prev.style.display='block';ph.style.display='none';
+    document.getElementById('logo-size-tag').textContent='✅ '+b64SizeKB(c)+' KB';
+    saveState();updateSizeMeter();hideProgress();showToast('Logo saved!');
+  }catch(e){hideProgress();showToast('❌ Logo error');}
 }
 
-// ══════════════════════════════════════════════════
-//  HONOUR WALL — TABS + SECTIONS
-// ══════════════════════════════════════════════════
-let activeTab = 0;
+// ══════════════════════════════
+//  HONOUR WALL
+// ══════════════════════════════
+let activeTab=0;
 function renderTabs(){
-  const tabsEl=document.getElementById('tabs'); tabsEl.innerHTML='';
+  const tabsEl=document.getElementById('tabs');tabsEl.innerHTML='';
   SECTIONS.forEach((sec,i)=>{
     const b=document.createElement('button');
     b.className='tab-btn'+(i===activeTab?' active':'');
     b.textContent=sec.emoji+' '+sec.title.replace('Top 3 ','');
-    b.onclick=()=>{ activeTab=i; renderTabs(); renderHonourSection(); };
+    b.onclick=()=>{activeTab=i;renderTabs();renderHonourSection();};
     tabsEl.appendChild(b);
   });
 }
 
 function renderHonourSection(){
-  const area=document.getElementById('sections-area'); area.innerHTML='';
+  const area=document.getElementById('sections-area');area.innerHTML='';
   const sec=SECTIONS[activeTab];
-  const secData=state.sections[sec.key]||{ week:sec.week, ranks:{} };
-  const card=document.createElement('div'); card.className='sec-card visible';
+  const secData=state.sections[sec.key]||{week:sec.week,ranks:{}};
+  const card=document.createElement('div');card.className='sec-card visible';
   card.innerHTML=`<div class="sec-title">${sec.emoji} ${sec.title}</div>
     <div class="field-label">WEEK / SUBTITLE</div>
     <input class="field-input" id="week_${sec.key}" value="${escHtml(secData.week||sec.week)}"
@@ -634,13 +749,13 @@ function renderHonourSection(){
   area.appendChild(card);
   const grid=document.getElementById('rankgrid_'+sec.key);
   RANKS.forEach(r=>{
-    const rb=document.createElement('div'); rb.className='rank-block';
+    const rb=document.createElement('div');rb.className='rank-block';
     const labelCls=r===1?'rb-gold':r===2?'rb-silver':'rb-bronze';
     const d=secData.ranks?.[r]||{name:'',stat:'',dp:'',frame:''};
-    const dpKB=d.dp?b64SizeKB(d.dp):0, frameKB=d.frame?b64SizeKB(d.frame):0;
+    const dpKB=d.dp?b64SizeKB(d.dp):0,frameKB=d.frame?b64SizeKB(d.frame):0;
     const frameFormat=d.frame?(isPNG(d.frame)?'🟡 PNG':'🔵 JPEG'):'';
     rb.innerHTML=`<div class="rank-block-title ${labelCls}">${RANK_LABEL[r]}</div>
-      <div class="upload-zone" title="DP Upload">
+      <div class="upload-zone">
         <input type="file" accept="image/*" onchange="handleDP(this,'${sec.key}',${r})">
         <img class="upload-zone-preview" id="dp_prev_${sec.key}_${r}" src="${d.dp||''}" ${d.dp?'style="display:block"':''}>
         <div id="dp_icon_${sec.key}_${r}" ${d.dp?'style="display:none"':''}><div class="upload-zone-icon">👤</div><div class="upload-zone-label">DP Upload (JPEG)</div></div>
@@ -666,81 +781,61 @@ function renderHonourSection(){
   });
 }
 
-// DP / Frame handlers
-function ensureRank(key,r){ if(!state.sections[key])state.sections[key]={week:'',ranks:{}}; if(!state.sections[key].ranks[r])state.sections[key].ranks[r]={name:'',stat:'',dp:'',frame:''}; }
+function ensureRank(key,r){if(!state.sections[key])state.sections[key]={week:'',ranks:{}};if(!state.sections[key].ranks[r])state.sections[key].ranks[r]={name:'',stat:'',dp:'',frame:''};}
 async function handleDP(inp,key,r){
-  const file=inp.files[0]; if(!file) return;
+  const file=inp.files[0];if(!file)return;
   showProgress('DP compress ho rahi hai...',40);
-  try {
+  try{
     const c=await compressImage(file,IMG_MAX_SIZE,IMG_QUALITY,false);
-    ensureRank(key,r); state.sections[key].ranks[r].dp=c;
-    const prev=document.getElementById('dp_prev_'+key+'_'+r), icon=document.getElementById('dp_icon_'+key+'_'+r), st=document.getElementById('dp_size_'+key+'_'+r);
-    if(prev){prev.src=c;prev.style.display='block';} if(icon)icon.style.display='none';
+    ensureRank(key,r);state.sections[key].ranks[r].dp=c;
+    const prev=document.getElementById('dp_prev_'+key+'_'+r),icon=document.getElementById('dp_icon_'+key+'_'+r),st=document.getElementById('dp_size_'+key+'_'+r);
+    if(prev){prev.src=c;prev.style.display='block';}if(icon)icon.style.display='none';
     if(st)st.textContent='✅ '+b64SizeKB(c)+' KB (JPEG)';
-    saveState(); updateSizeMeter(); hideProgress(); showToast('DP uploaded! ('+b64SizeKB(c)+' KB)');
-  } catch(e){ hideProgress(); showToast('❌ DP error'); }
+    saveState();updateSizeMeter();hideProgress();showToast('DP uploaded! ('+b64SizeKB(c)+' KB)');
+  }catch(e){hideProgress();showToast('❌ DP error');}
 }
 async function handleFrame(inp,key,r){
-  const file=inp.files[0]; if(!file) return;
+  const file=inp.files[0];if(!file)return;
   showProgress('Frame upload ho raha hai...',40);
-  try {
+  try{
     const c=await compressImage(file,FRAME_MAX,1.0,true);
-    ensureRank(key,r); state.sections[key].ranks[r].frame=c;
-    const prev=document.getElementById('fr_prev_'+key+'_'+r), icon=document.getElementById('fr_icon_'+key+'_'+r), st=document.getElementById('fr_size_'+key+'_'+r);
-    if(prev){prev.src=c;prev.style.display='block';} if(icon)icon.style.display='none';
-    if(st)st.textContent='✅ '+b64SizeKB(c)+' KB — 🟡 PNG transparent';
-    saveState(); updateSizeMeter(); hideProgress(); showToast('Frame uploaded! PNG ✅');
-  } catch(e){ hideProgress(); showToast('❌ Frame error'); }
+    ensureRank(key,r);state.sections[key].ranks[r].frame=c;
+    const prev=document.getElementById('fr_prev_'+key+'_'+r),icon=document.getElementById('fr_icon_'+key+'_'+r),st=document.getElementById('fr_size_'+key+'_'+r);
+    if(prev){prev.src=c;prev.style.display='block';}if(icon)icon.style.display='none';
+    if(st)st.textContent='✅ '+b64SizeKB(c)+' KB — 🟡 PNG';
+    saveState();updateSizeMeter();hideProgress();showToast('Frame uploaded! PNG ✅');
+  }catch(e){hideProgress();showToast('❌ Frame error');}
 }
-function clearDP(key,r){ if(!confirm('DP hata dein?'))return; ensureRank(key,r); state.sections[key].ranks[r].dp=''; saveState(); updateSizeMeter(); renderHonourSection(); showToast('DP hataya!'); }
-function clearFrame(key,r){ if(!confirm('Frame hata dein?'))return; ensureRank(key,r); state.sections[key].ranks[r].frame=''; saveState(); updateSizeMeter(); renderHonourSection(); showToast('Frame hataya!'); }
+function clearDP(key,r){if(!confirm('DP hata dein?'))return;ensureRank(key,r);state.sections[key].ranks[r].dp='';saveState();updateSizeMeter();renderHonourSection();showToast('DP hataya!');}
+function clearFrame(key,r){if(!confirm('Frame hata dein?'))return;ensureRank(key,r);state.sections[key].ranks[r].frame='';saveState();updateSizeMeter();renderHonourSection();showToast('Frame hataya!');}
 
-// ══════════════════════════════════════════════════
-//  SELLERS — PRICE LIST
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
+//  SELLERS
+// ══════════════════════════════
 function renderPriceList(){
-  const tbody=document.getElementById('price-tbody'); tbody.innerHTML='';
+  const tbody=document.getElementById('price-tbody');tbody.innerHTML='';
   (sellersState.priceList||[]).forEach((row,i)=>{
     const tr=document.createElement('tr');
     tr.innerHTML=`<td><input class="price-input" value="${escHtml(row.inr)}" oninput="sellersState.priceList[${i}].inr=this.value" placeholder="₹1,000"></td>
       <td><input class="price-input" value="${escHtml(row.coins)}" oninput="sellersState.priceList[${i}].coins=this.value" placeholder="1,00,000"></td>
-      <td>
-        <label class="pop-check">
-          <input type="checkbox" ${row.popular?'checked':''} onchange="sellersState.priceList[${i}].popular=this.checked">
-          Popular
-        </label>
-        ${row.popular?`<input class="price-input" style="margin-top:4px;font-size:10px" value="${escHtml(row.popularTag||'★ Popular')}" oninput="sellersState.priceList[${i}].popularTag=this.value" placeholder="Tag text">`:''}
+      <td><label class="pop-check"><input type="checkbox" ${row.popular?'checked':''} onchange="sellersState.priceList[${i}].popular=this.checked"> Popular</label>
+      ${row.popular?`<input class="price-input" style="margin-top:4px;font-size:10px" value="${escHtml(row.popularTag||'★ Popular')}" oninput="sellersState.priceList[${i}].popularTag=this.value" placeholder="Tag text">`:''}
       </td>
       <td><button class="del-row-btn" onclick="deletePriceRow(${i})">✕</button></td>`;
     tbody.appendChild(tr);
   });
 }
+function addPriceRow(){sellersState.priceList.push({inr:'',coins:'',popular:false,popularTag:''});renderPriceList();showToast('Row add ki!');}
+function deletePriceRow(i){sellersState.priceList.splice(i,1);renderPriceList();}
 
-function addPriceRow(){
-  sellersState.priceList.push({inr:'',coins:'',popular:false,popularTag:''});
-  renderPriceList(); showToast('Row add ki!');
-}
-
-function deletePriceRow(i){
-  sellersState.priceList.splice(i,1);
-  renderPriceList();
-}
-
-// ══════════════════════════════════════════════════
-//  SELLERS — CARDS
-// ══════════════════════════════════════════════════
 function renderSellerCards(){
-  const list=document.getElementById('seller-cards-list'); list.innerHTML='';
-  if(!sellersState.sellers.length){
-    list.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);font-size:13px">Koi seller nahi. "+ Seller Add Karo" dabao.</div>';
-    return;
-  }
-  sellersState.sellers.forEach((s,i)=>{ list.appendChild(buildSellerCard(s,i)); });
+  const list=document.getElementById('seller-cards-list');list.innerHTML='';
+  if(!sellersState.sellers.length){list.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted);font-size:13px">Koi seller nahi. "+ Seller Add Karo" dabao.</div>';return;}
+  sellersState.sellers.forEach((s,i)=>list.appendChild(buildSellerCard(s,i)));
 }
-
-function buildSellerCard(s, i){
-  const card=document.createElement('div'); card.className='seller-edit-card'; card.id='seller-card-'+i;
-
+function buildSellerCard(s,i){
+  const card=document.createElement('div');card.className='seller-edit-card';card.id='seller-card-'+i;
+  const init=(s.name.replace(/[^A-Za-z]/g,'').slice(0,2)||'??').toUpperCase();
   card.innerHTML=`<div class="seller-edit-header">
     <span class="seller-edit-num">#${i+1}</span>
     <span class="seller-edit-name-preview" id="snp_${i}">${escHtml(s.name||'New Seller')}</span>
@@ -751,8 +846,7 @@ function buildSellerCard(s, i){
       <img class="seller-dp-preview" id="seller_dp_prev_${i}" src="${s.dp||''}" ${s.dp?'style="display:block"':''}>
       <div class="seller-dp-placeholder" id="seller_dp_ph_${i}" ${s.dp?'style="display:none"':''}>👤</div>
       <label class="seller-dp-upload btn-sm btn-export" style="cursor:pointer;font-size:11px;padding:6px 12px;margin-top:6px">
-        📷 DP Upload
-        <input type="file" accept="image/*" onchange="handleSellerDP(this,${i})">
+        📷 DP Upload <input type="file" accept="image/*" onchange="handleSellerDP(this,${i})">
       </label>
       ${s.dp?`<button class="clear-btn" style="margin-top:4px;font-size:10px" onclick="clearSellerDP(${i})">✕ DP Remove</button>`:''}
       <div class="img-size-tag" id="seller_dp_size_${i}">${s.dp?'✅ '+b64SizeKB(s.dp)+' KB':''}</div>
@@ -760,201 +854,314 @@ function buildSellerCard(s, i){
     <div class="seller-fields">
       <div class="field-label">SELLER NAME</div>
       <input class="field-input" value="${escHtml(s.name||'')}"
-        oninput="sellersState.sellers[${i}].name=this.value;document.getElementById('snp_${i}').textContent=this.value||'New Seller'"
-        placeholder="e.g. CHOUDHARY SAHAB">
+        oninput="sellersState.sellers[${i}].name=this.value;document.getElementById('snp_${i}').textContent=this.value||'New Seller'" placeholder="e.g. CHOUDHARY SAHAB">
       <div class="field-label">RIZZ ID</div>
-      <input class="field-input" value="${escHtml(s.rizzId||'')}"
-        oninput="sellersState.sellers[${i}].rizzId=this.value"
-        placeholder="e.g. 7860">
-      <div class="field-label">WHATSAPP NUMBER (country code + number)</div>
-      <input class="field-input" value="${escHtml(s.phone||'')}"
-        oninput="sellersState.sellers[${i}].phone=this.value"
-        placeholder="e.g. 917087370584">
-      <div style="font-size:9px;color:var(--muted);margin-top:3px">⚠️ No + sign, no spaces — sirf numbers: 91XXXXXXXXXX</div>
+      <input class="field-input" value="${escHtml(s.rizzId||'')}" oninput="sellersState.sellers[${i}].rizzId=this.value" placeholder="e.g. 7860">
+      <div class="field-label">WHATSAPP NUMBER</div>
+      <input class="field-input" value="${escHtml(s.phone||'')}" oninput="sellersState.sellers[${i}].phone=this.value" placeholder="e.g. 917087370584">
+      <div style="font-size:9px;color:var(--muted);margin-top:3px">⚠️ No + sign: 91XXXXXXXXXX</div>
     </div>
   </div>`;
+  const img=card.querySelector('.seller-dp-preview'),fb=card.querySelector('.seller-dp-placeholder');
+  if(img){img.addEventListener('load',()=>{img.style.display='block';fb.style.display='none';});img.addEventListener('error',()=>{img.style.display='none';fb.style.display='flex';});}
+  return card;
+}
+function addNewSeller(){
+  sellersState.sellers.push({name:'',rizzId:'',phone:'',dp:''});
+  renderSellerCards();
+  const last=document.getElementById('seller-card-'+(sellersState.sellers.length-1));
+  if(last)last.scrollIntoView({behavior:'smooth',block:'center'});
+  showToast('Naya seller add hua!');
+}
+let pendingDeleteIdx=null;
+function confirmDeleteSeller(i){
+  pendingDeleteIdx=i;
+  document.getElementById('del-confirm-msg').textContent=`"${sellersState.sellers[i]?.name||'Seller #'+(i+1)}" ko delete karna chahte hain?`;
+  document.getElementById('delete-confirm').classList.add('open');
+  document.getElementById('del-confirm-btn').onclick=()=>{doDeleteSeller(pendingDeleteIdx);closeDeleteConfirm();};
+}
+function closeDeleteConfirm(){document.getElementById('delete-confirm').classList.remove('open');pendingDeleteIdx=null;}
+function doDeleteSeller(i){sellersState.sellers.splice(i,1);saveState();updateSizeMeter();renderSellerCards();showToast('Seller delete ho gaya!');}
+async function handleSellerDP(inp,i){
+  const file=inp.files[0];if(!file)return;
+  showProgress('Seller DP compress...',40);
+  try{
+    const c=await compressImage(file,SELLER_DP_MAX,SELLER_DP_QUALITY,false);
+    sellersState.sellers[i].dp=c;
+    const prev=document.getElementById('seller_dp_prev_'+i),ph=document.getElementById('seller_dp_ph_'+i),st=document.getElementById('seller_dp_size_'+i);
+    if(prev){prev.src=c;prev.style.display='block';}if(ph)ph.style.display='none';
+    if(st)st.textContent='✅ '+b64SizeKB(c)+' KB';
+    saveState();updateSizeMeter();hideProgress();showToast('Seller DP uploaded!');
+  }catch(e){hideProgress();showToast('❌ DP error');}
+}
+function clearSellerDP(i){sellersState.sellers[i].dp='';saveState();updateSizeMeter();renderSellerCards();showToast('DP hataya!');}
 
+// ══════════════════════════════
+//  VIP CARNIVAL
+// ══════════════════════════════
+
+// ─ Mascot
+async function handleMascotUpload(inp){
+  const file=inp.files[0];if(!file)return;
+  showProgress('Mascot upload ho raha hai...',40);
+  try{
+    // PNG ke liye forcePNG=true (transparent background rakho)
+    const isPngFile=file.type==='image/png'||file.type==='image/webp';
+    const c=await compressImage(file,MASCOT_MAX,MASCOT_QUALITY,isPngFile);
+    vipState.mascot=c;
+    const prev=document.getElementById('vip-mascot-preview'),ph=document.getElementById('vip-mascot-placeholder');
+    prev.src=c;prev.style.display='block';ph.style.display='none';
+    document.getElementById('mascot-size-tag').textContent='✅ '+b64SizeKB(c)+' KB '+(isPngFile?'PNG':'JPEG');
+    document.getElementById('mascot-clear-wrap').style.display='block';
+    saveState();updateSizeMeter();hideProgress();showToast('Mascot uploaded!');
+  }catch(e){hideProgress();showToast('❌ Mascot error');}
+}
+function clearMascot(){
+  vipState.mascot='';
+  document.getElementById('vip-mascot-preview').style.display='none';
+  document.getElementById('vip-mascot-placeholder').style.display='flex';
+  document.getElementById('mascot-size-tag').textContent='';
+  document.getElementById('mascot-clear-wrap').style.display='none';
+  saveState();updateSizeMeter();showToast('Mascot hataya!');
+}
+
+// ─ Tiers
+function renderVipTiers(){
+  const wrap=document.getElementById('vip-tiers-wrap');wrap.innerHTML='';
+  (vipState.tiers||[]).forEach((tier,i)=>wrap.appendChild(buildTierCard(tier,i)));
+}
+
+function buildTierCard(tier,i){
+  const card=document.createElement('div');card.className='vip-tier-card';card.id='tier-card-'+i;
+
+  const vipOptions=VIP_NAMES.map(n=>`<option value="${n}" ${tier.vipName===n?'selected':''}>${n}</option>`).join('');
+  const hasDp=tier.dp&&tier.dp.trim();
+  const hasFrame=tier.framePng&&tier.framePng.trim();
+
+  card.innerHTML=`<div class="vip-tier-header">
+    <span class="vip-tier-num">Tier ${i+1}</span>
+    <span class="vip-tier-name-preview">${escHtml(tier.recharge)} → ${escHtml(tier.vipName)}</span>
+  </div>
+  <div class="vip-tier-body">
+    <div class="tier-dp-col">
+      <div class="tier-dp-preview-wrap">
+        <div class="tier-dp-placeholder" id="tier_dp_ph_${i}" ${hasDp?'style="display:none"':''}>👤</div>
+        <img class="tier-dp-prev-img" id="tier_dp_img_${i}" src="${tier.dp||''}" ${hasDp?'style="display:block"':''} onerror="this.style.display='none';document.getElementById('tier_dp_ph_${i}').style.display='flex'">
+        <img class="tier-frame-prev-img" id="tier_fr_img_${i}" src="${tier.framePng||''}" ${hasFrame?'style="display:block"':''}>
+      </div>
+      <label class="btn-sm btn-purple" style="cursor:pointer;position:relative;overflow:hidden;font-size:10px;padding:5px 10px;margin-top:8px;display:inline-block">
+        📷 DP Upload
+        <input type="file" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" accept="image/*" onchange="handleTierDP(this,${i})">
+      </label>
+      ${hasDp?`<button class="clear-btn" style="width:auto;padding:3px 10px;margin-top:4px" onclick="clearTierDP(${i})">✕ DP</button>`:''}
+      <div class="img-size-tag" id="tier_dp_size_${i}">${hasDp?'✅ '+b64SizeKB(tier.dp)+' KB':''}</div>
+      <div style="margin-top:6px"><div class="png-badge">🖼 Frame = PNG</div></div>
+      <label class="btn-sm btn-export" style="cursor:pointer;position:relative;overflow:hidden;font-size:10px;padding:5px 10px;margin-top:6px;display:inline-block">
+        🖼 Frame PNG
+        <input type="file" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%" accept="image/*" onchange="handleTierFrame(this,${i})">
+      </label>
+      ${hasFrame?`<button class="clear-btn" style="width:auto;padding:3px 10px;margin-top:4px" onclick="clearTierFrame(${i})">✕ Frame</button>`:''}
+      <div class="img-size-tag" id="tier_fr_size_${i}">${hasFrame?'✅ '+b64SizeKB(tier.framePng)+' KB PNG':''}</div>
+      <div class="toggle-wrap">
+        <label class="toggle-switch">
+          <input type="checkbox" id="tier_frame_toggle_${i}" ${tier.frameEnabled?'checked':''} onchange="vipState.tiers[${i}].frameEnabled=this.checked;renderVipTiers()">
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label">Frame Milegi?</span>
+      </div>
+    </div>
+    <div>
+      <div class="field-label">RECHARGE AMOUNT</div>
+      <input class="field-input" value="${escHtml(tier.recharge)}" oninput="vipState.tiers[${i}].recharge=this.value;this.closest('.vip-tier-card').querySelector('.vip-tier-name-preview').textContent=this.value+' → '+vipState.tiers[${i}].vipName" placeholder="e.g. 300K">
+      <div class="field-label">VIP NAME</div>
+      <select class="field-select" onchange="vipState.tiers[${i}].vipName=this.value;this.closest('.vip-tier-card').querySelector('.vip-tier-name-preview').textContent=vipState.tiers[${i}].recharge+' → '+this.value">
+        ${vipOptions}
+      </select>
+      <div class="field-label">SPECIAL ID TEXT</div>
+      <input class="field-input" value="${escHtml(tier.specialId||'-')}" oninput="vipState.tiers[${i}].specialId=this.value" placeholder="e.g. 6 Digits / -">
+      <div style="font-size:9px;color:var(--muted);margin-top:3px">Agar nahi hai to - likho</div>
+    </div>
+  </div>`;
   return card;
 }
 
-function addNewSeller(){
-  sellersState.sellers.push({ name:'', rizzId:'', phone:'', dp:'' });
-  renderSellerCards();
-  const last=document.getElementById('seller-card-'+(sellersState.sellers.length-1));
-  if(last) last.scrollIntoView({behavior:'smooth',block:'center'});
-  showToast('Naya seller add hua!');
+async function handleTierDP(inp,i){
+  const file=inp.files[0];if(!file)return;
+  showProgress('Tier DP compress...',40);
+  try{
+    const c=await compressImage(file,TIER_DP_MAX,TIER_DP_QUALITY,false);
+    vipState.tiers[i].dp=c;
+    saveState();updateSizeMeter();hideProgress();renderVipTiers();showToast('Tier DP uploaded!');
+  }catch(e){hideProgress();showToast('❌ error');}
+}
+async function handleTierFrame(inp,i){
+  const file=inp.files[0];if(!file)return;
+  showProgress('Tier Frame upload...',40);
+  try{
+    const c=await compressImage(file,FRAME_MAX,1.0,true);
+    vipState.tiers[i].framePng=c;
+    saveState();updateSizeMeter();hideProgress();renderVipTiers();showToast('Tier Frame uploaded! PNG ✅');
+  }catch(e){hideProgress();showToast('❌ error');}
+}
+function clearTierDP(i){vipState.tiers[i].dp='';saveState();updateSizeMeter();renderVipTiers();showToast('DP hataya!');}
+function clearTierFrame(i){vipState.tiers[i].framePng='';saveState();updateSizeMeter();renderVipTiers();showToast('Frame hataya!');}
+
+// ─ Rules
+function renderRulesEditor(){
+  const list=document.getElementById('rules-editor-list');list.innerHTML='';
+  (vipState.rules||[]).forEach((rule,i)=>{
+    const row=document.createElement('div');row.className='rule-edit-row';
+    row.innerHTML=`<div class="rule-edit-num">${i+1}</div>
+      <input class="rule-edit-input" value="${escHtml(rule)}" oninput="vipState.rules[${i}]=this.value" placeholder="Rule likho...">
+      <button class="del-row-btn" onclick="deleteRule(${i})">✕</button>`;
+    list.appendChild(row);
+  });
+}
+function addRule(){vipState.rules.push('');renderRulesEditor();showToast('Rule add hui!');}
+function deleteRule(i){vipState.rules.splice(i,1);renderRulesEditor();}
+
+// ── VIP Page inputs sync
+function bindVipInputs(){
+  const t=document.getElementById('vip-title');
+  const tg=document.getElementById('vip-tagline');
+  const wt=document.getElementById('vip-week-title');
+  if(t){t.value=vipState.title||'VIP Carnival';}
+  if(tg){tg.value=vipState.tagline||'Recharge More, Unlock More!';}
+  if(wt){wt.value=vipState.weekTitle||'Weekly — Rizz Live VIP Carnival';}
 }
 
-// ── Delete seller flow
-let pendingDeleteIdx = null;
-function confirmDeleteSeller(i){
-  pendingDeleteIdx = i;
-  const name=sellersState.sellers[i]?.name||'Seller #'+(i+1);
-  document.getElementById('del-confirm-msg').textContent=`"${name}" ko delete karna chahte hain?`;
-  document.getElementById('delete-confirm').classList.add('open');
-  document.getElementById('del-confirm-btn').onclick=()=>{ doDeleteSeller(pendingDeleteIdx); closeDeleteConfirm(); };
-}
-function closeDeleteConfirm(){ document.getElementById('delete-confirm').classList.remove('open'); pendingDeleteIdx=null; }
-function doDeleteSeller(i){
-  sellersState.sellers.splice(i,1);
-  saveState(); updateSizeMeter(); renderSellerCards();
-  showToast('Seller delete ho gaya!');
-}
-
-// ── Seller DP
-async function handleSellerDP(inp, i){
-  const file=inp.files[0]; if(!file) return;
-  showProgress('Seller DP compress ho rahi hai...',40);
-  try {
-    const c=await compressImage(file,SELLER_DP_MAX,SELLER_DP_QUALITY,false);
-    sellersState.sellers[i].dp=c;
-    const prev=document.getElementById('seller_dp_prev_'+i), ph=document.getElementById('seller_dp_ph_'+i), st=document.getElementById('seller_dp_size_'+i);
-    if(prev){prev.src=c;prev.style.display='block';} if(ph)ph.style.display='none';
-    if(st)st.textContent='✅ '+b64SizeKB(c)+' KB';
-    saveState(); updateSizeMeter(); hideProgress(); showToast('Seller DP uploaded!');
-  } catch(e){ hideProgress(); showToast('❌ DP error'); }
-}
-function clearSellerDP(i){
-  sellersState.sellers[i].dp='';
-  saveState(); updateSizeMeter(); renderSellerCards(); showToast('DP hataya!');
-}
-
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  SAVE
-// ══════════════════════════════════════════════════
-function saveAll(){
-  saveState(); updateSizeMeter(); showToast('✅ Sab save ho gaya!');
-}
+// ══════════════════════════════
+function saveAll(){saveState();updateSizeMeter();showToast('✅ Sab save ho gaya!');}
 
-// ══════════════════════════════════════════════════
-//  EXPORT — HONOUR
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
+//  EXPORTS
+// ══════════════════════════════
 function openExport(){
-  const json=getJSONString(), mb=(new Blob([json]).size/1024/1024).toFixed(2);
+  const json=getJSONString(),mb=(new Blob([json]).size/1024/1024).toFixed(2);
   document.getElementById('export-ta').value=json;
-  const info=document.getElementById('export-size-info'), ok=parseFloat(mb)<24;
+  const info=document.getElementById('export-size-info'),ok=parseFloat(mb)<24;
   info.style.color=ok?'#00e5ff':'#ff4d80';
-  info.textContent=(ok?'✅ ':'⚠️ ')+'File size: '+mb+' MB'+(ok?' — Safe!':' — Limit cross! Images remove karo.');
+  info.textContent=(ok?'✅ ':'⚠️ ')+'File size: '+mb+' MB'+(ok?' — Safe!':' — Too big!');
   document.getElementById('export-modal').classList.add('open');
 }
-function closeExport(){ document.getElementById('export-modal').classList.remove('open'); }
-function downloadJSON(){
-  const blob=new Blob([getJSONString()],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='rizz-data.json'; a.click();
-  showToast('⬇️ rizz-data.json download!');
-}
-function copyJSON(){ navigator.clipboard.writeText(getJSONString()).then(()=>showToast('📋 Copied!')); }
+function closeExport(){document.getElementById('export-modal').classList.remove('open');}
+function downloadJSON(){const blob=new Blob([getJSONString()],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rizz-data.json';a.click();showToast('⬇️ Downloaded!');}
+function copyJSON(){navigator.clipboard.writeText(getJSONString()).then(()=>showToast('📋 Copied!'));}
 
-// ══════════════════════════════════════════════════
-//  EXPORT — SELLERS
-// ══════════════════════════════════════════════════
 function openExportSellers(){
-  const json=getSellersJSONString(), mb=(new Blob([json]).size/1024/1024).toFixed(2);
+  const json=getSellersJSONString(),mb=(new Blob([json]).size/1024/1024).toFixed(2);
   document.getElementById('export-sellers-ta').value=json;
-  const info=document.getElementById('export-sellers-size-info'), ok=parseFloat(mb)<24;
+  const info=document.getElementById('export-sellers-size-info'),ok=parseFloat(mb)<24;
   info.style.color=ok?'#00e5ff':'#ff4d80';
-  info.textContent=(ok?'✅ ':'⚠️ ')+'File size: '+mb+' MB'+(ok?' — Safe!':' — Bahut bada! Images kam karo.');
+  info.textContent=(ok?'✅ ':'⚠️ ')+'File size: '+mb+' MB'+(ok?' — Safe!':' — Bahut bada!');
   document.getElementById('export-sellers-modal').classList.add('open');
 }
-function closeExportSellers(){ document.getElementById('export-sellers-modal').classList.remove('open'); }
-function downloadSellersJSON(){
-  const blob=new Blob([getSellersJSONString()],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='rizz-sellers.json'; a.click();
-  showToast('⬇️ rizz-sellers.json download!');
-}
-function copySellersJSON(){ navigator.clipboard.writeText(getSellersJSONString()).then(()=>showToast('📋 Sellers JSON Copied!')); }
+function closeExportSellers(){document.getElementById('export-sellers-modal').classList.remove('open');}
+function downloadSellersJSON(){const blob=new Blob([getSellersJSONString()],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rizz-sellers.json';a.click();showToast('⬇️ Sellers JSON!');}
+function copySellersJSON(){navigator.clipboard.writeText(getSellersJSONString()).then(()=>showToast('📋 Sellers Copied!'));}
 
-// ══════════════════════════════════════════════════
+function openExportVip(){
+  const json=getVipJSONString(),mb=(new Blob([json]).size/1024/1024).toFixed(2);
+  document.getElementById('export-vip-ta').value=json;
+  const info=document.getElementById('export-vip-size-info'),ok=parseFloat(mb)<24;
+  info.style.color=ok?'#00e5ff':'#ff4d80';
+  info.textContent=(ok?'✅ ':'⚠️ ')+'VIP JSON size: '+mb+' MB'+(ok?' — Safe!':' — Bahut bada! Images compress karo.');
+  document.getElementById('export-vip-modal').classList.add('open');
+}
+function closeExportVip(){document.getElementById('export-vip-modal').classList.remove('open');}
+function downloadVipJSON(){const blob=new Blob([getVipJSONString()],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rizz-vip.json';a.click();showToast('⬇️ rizz-vip.json!');}
+function copyVipJSON(){navigator.clipboard.writeText(getVipJSONString()).then(()=>showToast('📋 VIP JSON Copied!'));}
+
+// ══════════════════════════════
 //  IMPORT
-// ══════════════════════════════════════════════════
-function openImport(){ document.getElementById('import-modal').classList.add('open'); }
-function closeImport(){ document.getElementById('import-modal').classList.remove('open'); }
+// ══════════════════════════════
+function openImport(){document.getElementById('import-modal').classList.add('open');}
+function closeImport(){document.getElementById('import-modal').classList.remove('open');}
 
 async function handleImport(inp){
-  const file=inp.files[0]; if(!file) return;
+  const file=inp.files[0];if(!file)return;
   const status=document.getElementById('import-status');
   status.textContent='⏳ Import ho raha hai...';
-  showProgress('JSON import ho raha hai...',50);
-  try {
+  showProgress('JSON import...',50);
+  try{
     const text=await file.text();
     const parsed=JSON.parse(text);
-
-    // Detect which JSON type it is
-    if(parsed.sellers !== undefined || parsed.priceList !== undefined){
+    if(parsed.tiers!==undefined&&parsed.mascot!==undefined){
+      // VIP JSON
+      if(!parsed.tiers)parsed.tiers=JSON.parse(JSON.stringify(DEFAULT_VIP_TIERS));
+      if(!parsed.rules)parsed.rules=[];
+      vipState=parsed;
+      saveState();updateSizeMeter();bindVipInputs();renderVipTiers();renderRulesEditor();
+      hideProgress();closeImport();showToast('✅ VIP Carnival import done!');
+      status.textContent='✅ rizz-vip.json import successful!';
+    } else if(parsed.sellers!==undefined||parsed.priceList!==undefined){
       // Sellers JSON
-      if(!parsed.sellers) parsed.sellers=[];
-      if(!parsed.priceList) parsed.priceList=JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST));
+      if(!parsed.sellers)parsed.sellers=[];
+      if(!parsed.priceList)parsed.priceList=JSON.parse(JSON.stringify(DEFAULT_PRICE_LIST));
       sellersState=parsed;
-      saveState(); updateSizeMeter(); renderPriceList(); renderSellerCards();
-      hideProgress(); closeImport();
-      showToast('✅ Sellers import done!');
+      saveState();updateSizeMeter();renderPriceList();renderSellerCards();
+      hideProgress();closeImport();showToast('✅ Sellers import done!');
       status.textContent='✅ rizz-sellers.json import successful!';
-    } else if(parsed.sections !== undefined){
+    } else if(parsed.sections!==undefined){
       // Honour JSON
-      let processed=0; const allImgs=[];
+      let processed=0;const allImgs=[];
       for(const secKey of Object.keys(parsed.sections||{})){
         for(const r of [1,2,3]){
-          const rdata=parsed.sections[secKey]?.ranks?.[r];
-          if(rdata?.dp) allImgs.push({obj:rdata,field:'dp',maxPx:IMG_MAX_SIZE,q:IMG_QUALITY,forcePNG:false});
-          if(rdata?.frame) allImgs.push({obj:rdata,field:'frame',maxPx:FRAME_MAX,q:1.0,forcePNG:true});
+          const rd=parsed.sections[secKey]?.ranks?.[r];
+          if(rd?.dp)allImgs.push({obj:rd,field:'dp',maxPx:IMG_MAX_SIZE,q:IMG_QUALITY,forcePNG:false});
+          if(rd?.frame)allImgs.push({obj:rd,field:'frame',maxPx:FRAME_MAX,q:1.0,forcePNG:true});
         }
       }
-      if(parsed.logo) allImgs.push({obj:parsed,field:'logo',maxPx:LOGO_MAX,q:LOGO_QUALITY,forcePNG:false});
+      if(parsed.logo)allImgs.push({obj:parsed,field:'logo',maxPx:LOGO_MAX,q:LOGO_QUALITY,forcePNG:false});
       const total=allImgs.length;
       for(const item of allImgs){
         const orig=item.obj[item.field];
-        if(orig&&orig.startsWith('data:')){
-          try { item.obj[item.field]=await recompressBase64(orig,item.maxPx,item.q,item.forcePNG); } catch(e){}
-        }
-        processed++;
-        updateProgress('Images process ho rahi hain... ('+processed+'/'+total+')',Math.round(50+(processed/total)*45));
+        if(orig&&orig.startsWith('data:')){try{item.obj[item.field]=await recompressBase64(orig,item.maxPx,item.q,item.forcePNG);}catch(e){}}
+        processed++;updateProgress('Images... ('+processed+'/'+total+')',Math.round(50+(processed/total)*45));
       }
-      state=parsed; saveState(); updateSizeMeter();
-      if(state.logo){ const p=document.getElementById('logo-preview'),ph=document.getElementById('logo-placeholder'); if(p){p.src=state.logo;p.style.display='block';} if(ph)ph.style.display='none'; }
-      hideProgress(); closeImport(); renderTabs(); renderHonourSection();
-      showToast('✅ Honour Wall import done!');
-      status.textContent='✅ rizz-data.json import successful!';
-    } else {
-      throw new Error('Unknown JSON format');
-    }
-  } catch(e){
-    hideProgress(); status.textContent='❌ Error: '+e.message; showToast('❌ Import failed!');
-  }
+      state=parsed;saveState();updateSizeMeter();
+      if(state.logo){const p=document.getElementById('logo-preview'),ph=document.getElementById('logo-placeholder');if(p){p.src=state.logo;p.style.display='block';}if(ph)ph.style.display='none';}
+      hideProgress();closeImport();renderTabs();renderHonourSection();
+      showToast('✅ Honour Wall import done!');status.textContent='✅ rizz-data.json import!';
+    } else {throw new Error('Unknown JSON format');}
+  }catch(e){hideProgress();status.textContent='❌ Error: '+e.message;showToast('❌ Import failed!');}
 }
 
-// ══════════════════════════════════════════════════
-//  PROGRESS
-// ══════════════════════════════════════════════════
-function showProgress(msg,pct){ document.getElementById('progress-overlay').classList.add('show'); document.getElementById('progress-text').textContent=msg; document.getElementById('progress-fill').style.width=(pct||10)+'%'; }
-function updateProgress(msg,pct){ document.getElementById('progress-text').textContent=msg; document.getElementById('progress-fill').style.width=pct+'%'; }
-function hideProgress(){ document.getElementById('progress-fill').style.width='100%'; setTimeout(()=>document.getElementById('progress-overlay').classList.remove('show'),300); }
-
-// ══════════════════════════════════════════════════
-//  TOAST
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
+//  PROGRESS & TOAST
+// ══════════════════════════════
+function showProgress(msg,pct){document.getElementById('progress-overlay').classList.add('show');document.getElementById('progress-text').textContent=msg;document.getElementById('progress-fill').style.width=(pct||10)+'%';}
+function updateProgress(msg,pct){document.getElementById('progress-text').textContent=msg;document.getElementById('progress-fill').style.width=pct+'%';}
+function hideProgress(){document.getElementById('progress-fill').style.width='100%';setTimeout(()=>document.getElementById('progress-overlay').classList.remove('show'),300);}
 let toastTimer;
-function showToast(msg='Saved!'){
-  clearTimeout(toastTimer);
-  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
-}
+function showToast(msg='Saved!'){clearTimeout(toastTimer);const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');toastTimer=setTimeout(()=>t.classList.remove('show'),2500);}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
 
-function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
-
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 //  INIT
-// ══════════════════════════════════════════════════
+// ══════════════════════════════
 function initAdmin(){
   loadState();
-  if(state.logo){ const p=document.getElementById('logo-preview'),ph=document.getElementById('logo-placeholder'); p.src=state.logo; p.style.display='block'; ph.style.display='none'; document.getElementById('logo-size-tag').textContent=b64SizeKB(state.logo)+' KB'; }
-  updateSizeMeter(); renderTabs(); renderHonourSection(); renderPriceList(); renderSellerCards();
+  // Honour logo
+  if(state.logo){const p=document.getElementById('logo-preview'),ph=document.getElementById('logo-placeholder');p.src=state.logo;p.style.display='block';ph.style.display='none';document.getElementById('logo-size-tag').textContent=b64SizeKB(state.logo)+' KB';}
+  // VIP mascot
+  if(vipState.mascot){const p=document.getElementById('vip-mascot-preview'),ph=document.getElementById('vip-mascot-placeholder');p.src=vipState.mascot;p.style.display='block';ph.style.display='none';document.getElementById('mascot-size-tag').textContent=b64SizeKB(vipState.mascot)+' KB';document.getElementById('mascot-clear-wrap').style.display='block';}
+  updateSizeMeter();
+  // Honour
+  renderTabs();renderHonourSection();
+  // Sellers
+  renderPriceList();renderSellerCards();
+  // VIP
+  bindVipInputs();renderVipTiers();renderRulesEditor();
 }
 
-// Close modals on backdrop click
-['export-modal','export-sellers-modal','import-modal'].forEach(id=>{
-  document.getElementById(id).addEventListener('click',function(e){ if(e.target===this) this.classList.remove('open'); });
+// Close modals on backdrop
+['export-modal','export-sellers-modal','export-vip-modal','import-modal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
 });
-document.getElementById('delete-confirm').addEventListener('click',function(e){ if(e.target===this) closeDeleteConfirm(); });
+document.getElementById('delete-confirm').addEventListener('click',function(e){if(e.target===this)closeDeleteConfirm();});
 </script>
 </body>
 </html>
