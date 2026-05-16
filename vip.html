@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizz Live — VIP Carnival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a011f;--purple1:#4a1270;--purple2:#7b2fff;--purple3:#b44fff;
+  --gold:#ffd700;--gold2:#ffe566;--gold3:#ffb300;--gold4:#fff8e0;
+  --pink:#ff3d7f;--cyan:#00e5ff;--text:#f5f3ff;--muted:#7a6a99;
+  --card-bg:rgba(30,10,70,0.85);
+}
+html,body{background:var(--bg);min-height:100vh;overflow-x:hidden}
+body{font-family:'Rajdhani',sans-serif;color:var(--text)}
+
+/* ── INTRO ── */
+#intro{
+  position:fixed;inset:0;z-index:999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 20%,#2a0660 0%,#0a011f 60%,#03020a 100%);
+  transition:opacity 1.4s cubic-bezier(.4,0,.2,1),transform 1.6s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+#intro.out{opacity:0;transform:scale(1.08) translateY(-30px);pointer-events:none}
+.star-field{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:.08}50%{opacity:var(--op,.7);transform:scale(1.6)}}
+.intro-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.intro-orb1{width:500px;height:500px;background:rgba(123,47,255,.15);top:-100px;left:-100px;animation:orbF 9s ease-in-out infinite}
+.intro-orb2{width:350px;height:350px;background:rgba(255,61,127,.08);bottom:-80px;right:-80px;animation:orbF 12s ease-in-out infinite 2s}
+@keyframes orbF{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-25px)}}
+
+.intro-center{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;padding:0 20px}
+
+.intro-brand-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;opacity:0;animation:fSD .7s ease .2s forwards}
+.intro-brand-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.4}
+.intro-brand-name{font-family:'Cinzel Decorative',cursive;font-size:10px;font-weight:700;letter-spacing:7px;color:rgba(255,215,0,.4);text-transform:uppercase}
+@keyframes fSD{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+
+.crown-wrap{position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;opacity:0;animation:tIn .9s cubic-bezier(.34,1.56,.64,1) .4s forwards}
+@keyframes tIn{from{opacity:0;transform:scale(.35) translateY(40px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.crown-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(255,215,0,.5) 0%,rgba(123,47,255,.2) 50%,transparent 70%);animation:tGlow 2s ease-in-out infinite alternate}
+@keyframes tGlow{from{transform:scale(.9);opacity:.5}to{transform:scale(1.2);opacity:1}}
+.crown-emoji{font-size:60px;filter:drop-shadow(0 0 20px rgba(255,215,0,.9));animation:cFloat 3s ease-in-out infinite}
+@keyframes cFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+
+.intro-title-wrap{opacity:0;animation:fSU .8s ease 1s forwards;margin-bottom:6px}
+.intro-title-line1{font-family:'Cinzel Decorative',cursive;font-size:13px;font-weight:900;letter-spacing:6px;color:rgba(255,215,0,.6);display:block;text-transform:uppercase;margin-bottom:4px}
+.intro-title-line2{font-family:'Cinzel Decorative',cursive;font-size:30px;font-weight:900;letter-spacing:3px;background:linear-gradient(180deg,#fff 0%,#ffe566 30%,#ffd700 60%,#c88000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1.1;animation:tShimmer 3s ease-in-out infinite alternate;filter:drop-shadow(0 0 20px rgba(255,200,0,.4))}
+@keyframes tShimmer{from{filter:drop-shadow(0 0 12px rgba(255,200,0,.4))}to{filter:drop-shadow(0 0 40px rgba(255,200,0,.95))}}
+.intro-title-line3{font-family:'Cinzel Decorative',cursive;font-size:22px;font-weight:900;letter-spacing:5px;background:linear-gradient(90deg,#b44fff,#ff3d7f,#b44fff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-top:2px;animation:wFlow 3s linear infinite}
+@keyframes wFlow{0%{background-position:0%}100%{background-position:200%}}
+
+.intro-sub{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;color:rgba(255,215,0,.5);text-transform:uppercase;margin-top:12px;opacity:0;animation:fSU .6s ease 1.5s forwards;border:1px solid rgba(255,215,0,.15);border-radius:30px;padding:5px 18px}
+.intro-progress-wrap{width:170px;height:1.5px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:22px;overflow:hidden;opacity:0;animation:fSU .6s ease 1.7s forwards}
+.intro-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,transparent,var(--gold3),var(--gold),var(--gold2));box-shadow:0 0 12px var(--gold);animation:pFill 3.5s cubic-bezier(.4,0,.2,1) .3s forwards}
+@keyframes pFill{from{width:0%}to{width:100%}}
+@keyframes fSU{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MAIN ── */
+#main{display:none;width:100%;max-width:540px;margin:0 auto;min-height:100vh;position:relative;z-index:1;padding-bottom:60px}
+
+/* Animated background */
+.bg-stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.bg-orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(123,47,255,.08) 0%,transparent 70%);top:-200px;left:-200px;animation:bgF 14s ease-in-out infinite}
+.bg-orb2{width:600px;height:600px;background:radial-gradient(circle,rgba(255,61,127,.05) 0%,transparent 70%);bottom:-100px;right:-200px;animation:bgF 18s ease-in-out infinite 3s}
+@keyframes bgF{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
+
+/* ── HEADER ── */
+.page-header{
+  position:sticky;top:0;z-index:50;min-height:58px;padding:0 16px;
+  background:rgba(10,1,31,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;overflow:hidden;
+}
+.page-header::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(180,79,255,.6) 30%,rgba(255,215,0,.6) 50%,rgba(180,79,255,.6) 70%,transparent 95%)}
+.hdr-brand{font-family:'Cinzel Decorative',cursive;font-size:11px;font-weight:700;background:linear-gradient(90deg,#ffe566,#ffd700,#ffb300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1.5px}
+.hdr-sub{font-size:7px;color:rgba(255,215,0,.28);letter-spacing:3px;text-transform:uppercase}
+.hdr-title{font-family:'Cinzel',serif;font-size:13px;font-weight:900;letter-spacing:4px;background:linear-gradient(180deg,#fff 0%,#ffe88a 50%,rgba(255,215,0,.85) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center}
+
+/* ── HERO BANNER ── */
+.hero-section{position:relative;overflow:hidden;padding:0;margin-bottom:0}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(123,47,255,.3) 0%,rgba(10,1,31,0) 70%);pointer-events:none;z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(180,79,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(180,79,255,.04) 1px,transparent 1px);background-size:30px 30px;z-index:0;mask-image:radial-gradient(ellipse at center,rgba(0,0,0,.5) 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,rgba(0,0,0,.5) 0%,transparent 70%)}
+
+.hero-inner{position:relative;z-index:1;padding:24px 16px 20px;display:flex;flex-direction:column;align-items:center}
+
+.mascot-wrap{position:relative;width:160px;height:160px;margin:0 auto 14px;flex-shrink:0}
+.mascot-img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 30px rgba(180,79,255,.6)) drop-shadow(0 8px 20px rgba(0,0,0,.5));animation:mascotFloat 4s ease-in-out infinite}
+@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.mascot-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:90px;filter:drop-shadow(0 0 20px rgba(180,79,255,.6));animation:mascotFloat 4s ease-in-out infinite}
+
+.hero-badges{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,rgba(123,47,255,.2),rgba(180,79,255,.1));border:1px solid rgba(180,79,255,.3);border-radius:30px;padding:4px 14px;font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.7);text-transform:uppercase;position:relative;overflow:hidden}
+.hero-badge::after{content:'';position:absolute;top:0;left:-50%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);animation:bSweep 3s ease-in-out infinite}
+@keyframes bSweep{0%{left:-50%}100%{left:150%}}
+
+.hero-title-block{text-align:center;margin-bottom:8px}
+.weekly-txt{font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:6px;color:rgba(255,215,0,.6);text-transform:uppercase;display:block;margin-bottom:4px}
+.hero-main-title{font-family:'Cinzel Decorative',cursive;font-size:clamp(22px,7vw,32px);font-weight:900;line-height:1.1;display:block}
+.hero-main-title .t1{background:linear-gradient(180deg,#fff 0%,#ffe566 40%,#ffd700 70%,#c88000 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 12px rgba(255,200,0,.3))}
+.hero-main-title .t2{background:linear-gradient(90deg,#b44fff,#ff3d7f,#b44fff);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:wFlow 3s linear infinite}
+.hero-tagline{display:inline-flex;align-items:center;gap:6px;margin-top:8px;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,179,0,.06));border:1px solid rgba(255,215,0,.25);border-radius:30px;padding:5px 16px;font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:rgba(255,215,0,.8);letter-spacing:2px}
+
+/* ── VIP TABLE SECTION ── */
+.vip-section{position:relative;z-index:1;padding:16px 12px 0}
+
+.section-header{text-align:center;margin-bottom:16px;position:relative}
+.section-header::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,79,255,.3),rgba(255,215,0,.4),rgba(180,79,255,.3),transparent)}
+.section-header-inner{position:relative;display:inline-flex;align-items:center;gap:10px;background:var(--bg);padding:0 16px}
+.section-star{color:var(--gold);font-size:12px;filter:drop-shadow(0 0 6px rgba(255,215,0,.8));animation:starPulse 2s ease-in-out infinite}
+@keyframes starPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.section-title{font-family:'Cinzel',serif;font-size:11px;font-weight:900;letter-spacing:4px;background:linear-gradient(90deg,#ffd700,#ffe566,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase}
+
+/* Table wrapper */
+.vip-table-wrap{background:rgba(20,5,55,.7);border:1px solid rgba(180,79,255,.3);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 0 1px rgba(255,215,0,.05) inset}
+
+/* Table Header Row */
+.vip-thead{display:grid;grid-template-columns:1fr 1.2fr 1.1fr 1.1fr;background:linear-gradient(135deg,rgba(123,47,255,.25),rgba(180,79,255,.15));border-bottom:1px solid rgba(180,79,255,.4);padding:0}
+.vip-th{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px 9px;gap:4px;border-right:1px solid rgba(255,255,255,.06)}
+.vip-th:last-child{border-right:none}
+.vip-th-icon{font-size:20px;filter:drop-shadow(0 0 6px rgba(255,215,0,.6))}
+.vip-th-label{font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.7);text-transform:uppercase;text-align:center;line-height:1.3}
+
+/* Table Body Rows */
+.vip-tbody{}
+.vip-row{display:grid;grid-template-columns:1fr 1.2fr 1.1fr 1.1fr;border-bottom:1px solid rgba(255,255,255,.05);position:relative;transition:background .25s}
+.vip-row:last-child{border-bottom:none}
+.vip-row:hover{background:rgba(180,79,255,.05)}
+.vip-row.tier-king{background:linear-gradient(135deg,rgba(123,47,255,.08),rgba(255,61,127,.05))}
+.vip-row.tier-emperor{background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(123,47,255,.08))}
+.vip-row.tier-king::before,.vip-row.tier-emperor::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--gold),transparent)}
+
+.vip-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 6px;gap:4px;border-right:1px solid rgba(255,255,255,.04);text-align:center;min-height:70px}
+.vip-cell:last-child{border-right:none}
+
+/* Recharge cell */
+.recharge-val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;line-height:1;color:#fff;text-shadow:0 0 12px rgba(180,79,255,.4)}
+.tier-emperor .recharge-val{color:var(--gold);text-shadow:0 0 16px rgba(255,215,0,.5)}
+.tier-king .recharge-val{color:#c8a0ff;text-shadow:0 0 12px rgba(180,79,255,.5)}
+.recharge-suffix{font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+
+/* VIP cell */
+.vip-name-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:20px;font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:1px}
+.vip-ranger{background:rgba(100,200,255,.1);border:1px solid rgba(100,200,255,.3);color:#80d8ff}
+.vip-knight{background:rgba(150,255,150,.1);border:1px solid rgba(150,255,150,.3);color:#a5f3a5}
+.vip-lord{background:rgba(180,79,255,.15);border:1px solid rgba(180,79,255,.4);color:#d4a0ff}
+.vip-duke{background:rgba(255,179,0,.1);border:1px solid rgba(255,179,0,.3);color:#ffd966}
+.vip-king{background:linear-gradient(135deg,rgba(123,47,255,.2),rgba(255,61,127,.15));border:1px solid rgba(180,79,255,.5);color:#e0b0ff;box-shadow:0 0 12px rgba(180,79,255,.2)}
+.vip-emperor{background:linear-gradient(135deg,rgba(255,215,0,.15),rgba(255,179,0,.08));border:1px solid rgba(255,215,0,.5);color:var(--gold);box-shadow:0 0 16px rgba(255,215,0,.2)}
+
+/* Frame cell */
+.frame-content{display:flex;flex-direction:column;align-items:center;gap:6px}
+.frame-dp-wrap{position:relative;width:46px;height:46px}
+.frame-dp-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid rgba(180,79,255,.5)}
+.frame-png-overlay{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);object-fit:contain;pointer-events:none;z-index:2}
+.frame-no-dp{width:46px;height:46px;border-radius:50%;background:rgba(180,79,255,.1);border:2px dashed rgba(180,79,255,.3);display:flex;align-items:center;justify-content:center;font-size:18px}
+.frame-yes-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:12px;background:rgba(34,214,142,.1);border:1px solid rgba(34,214,142,.3);font-size:8px;font-weight:700;letter-spacing:1px;color:#22d68e;text-transform:uppercase}
+.frame-no-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:700;color:rgba(255,255,255,.25)}
+
+/* Special ID cell */
+.special-id-val{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:rgba(255,255,255,.4);text-align:center;line-height:1.3}
+.special-id-val.has-id{color:var(--gold);text-shadow:0 0 10px rgba(255,215,0,.3)}
+.special-id-dash{font-family:'Bebas Neue',sans-serif;font-size:20px;color:rgba(255,255,255,.18)}
+
+/* ── RULES SECTION ── */
+.rules-section{position:relative;z-index:1;padding:20px 12px 10px}
+.rules-card{background:rgba(20,5,55,.7);border:1px solid rgba(180,79,255,.25);border-radius:16px;overflow:hidden;padding:18px 16px}
+.rules-header{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.rules-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,179,0,.06));border:1px solid rgba(255,215,0,.35);border-radius:8px;padding:6px 16px;font-family:'Cinzel',serif;font-size:11px;font-weight:900;letter-spacing:2px;color:var(--gold);text-shadow:0 0 10px rgba(255,215,0,.4)}
+
+.rule-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.rule-item:last-child{border-bottom:none;padding-bottom:0}
+.rule-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#b44fff);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;color:#fff;flex-shrink:0;box-shadow:0 0 10px rgba(123,47,255,.4)}
+.rule-text{font-size:13px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.5;padding-top:4px}
+
+/* ── LOADING ── */
+#loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:14px}
+.loading-spinner{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.05);border-top-color:var(--gold);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+
+/* ── FOOTER ── */
+.page-footer{text-align:center;padding:22px 16px 18px;border-top:1px solid rgba(255,255,255,.04);position:relative;z-index:1;margin-top:10px}
+.page-footer::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(180,79,255,.3),rgba(255,215,0,.2),rgba(180,79,255,.3),transparent)}
+.footer-brand{font-family:'Cinzel Decorative',cursive;font-size:7px;font-weight:700;color:rgba(255,215,0,.12);letter-spacing:5px}
+.india-flag{display:flex;align-items:center;justify-content:center;gap:2px;margin-top:8px}
+.fs{width:20px;height:4px;border-radius:1px}
+
+/* Section animate */
+.section-block{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.section-block.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:400px){
+  .vip-thead,.vip-row{grid-template-columns:.9fr 1.1fr 1fr 1fr}
+  .vip-th{padding:8px 3px 7px}
+  .vip-th-icon{font-size:16px}
+  .vip-th-label{font-size:6px;letter-spacing:.5px}
+  .vip-cell{padding:10px 3px;min-height:60px}
+  .recharge-val{font-size:18px}
+  .frame-dp-wrap{width:38px;height:38px}
+  .vip-name-badge{font-size:8.5px;padding:3px 8px}
+  .hero-main-title{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="star-field" id="star-field"></div>
+  <div class="intro-orb intro-orb1"></div>
+  <div class="intro-orb intro-orb2"></div>
+  <div class="intro-center">
+    <div class="intro-brand-row">
+      <div class="intro-brand-dot"></div>
+      <div class="intro-brand-name">Rizz Live</div>
+      <div class="intro-brand-dot"></div>
+    </div>
+    <div class="crown-wrap">
+      <div class="crown-glow"></div>
+      <div class="crown-emoji">👑</div>
+    </div>
+    <div class="intro-title-wrap">
+      <span class="intro-title-line1">Weekly</span>
+      <span class="intro-title-line2">VIP</span>
+      <span class="intro-title-line3">CARNIVAL</span>
+    </div>
+    <div class="intro-sub">🇮🇳 &nbsp; Recharge More · Unlock More &nbsp; 🇮🇳</div>
+    <div class="intro-progress-wrap"><div class="intro-progress-bar"></div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div class="bg-stars" id="bg-stars"></div>
+  <div class="bg-orb bg-orb1"></div>
+  <div class="bg-orb bg-orb2"></div>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div>
+      <div class="hdr-brand">RIZZ LIVE</div>
+      <div class="hdr-sub">Weekly VIP</div>
+    </div>
+    <div class="hdr-title">VIP CARNIVAL</div>
+    <div style="width:80px;flex-shrink:0"></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-section section-block" id="hero-block">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <!-- Mascot -->
+      <div class="mascot-wrap" id="mascot-wrap">
+        <div class="mascot-fallback" id="mascot-fallback">🦊</div>
+        <img id="mascot-img" class="mascot-img" src="" alt="Mascot" style="display:none" onerror="this.style.display='none';document.getElementById('mascot-fallback').style.display='flex'">
+      </div>
+
+      <div class="hero-badges">
+        <div class="hero-badge">⭐ Weekly Event</div>
+        <div class="hero-badge">🇮🇳 India</div>
+      </div>
+
+      <div class="hero-title-block">
+        <span class="weekly-txt">Weekly · Rizz Live</span>
+        <span class="hero-main-title">
+          <span class="t1" id="hero-title-text">VIP Carnival</span>
+        </span>
+      </div>
+
+      <div class="hero-tagline">
+        👑 &nbsp; <span id="hero-tagline-text">Recharge More, Unlock More!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIP TABLE -->
+  <div class="vip-section section-block" id="table-block">
+    <div class="section-header">
+      <div class="section-header-inner">
+        <span class="section-star">★</span>
+        <span class="section-title" id="section-week-title">Weekly — Rizz Live VIP Carnival</span>
+        <span class="section-star">★</span>
+      </div>
+    </div>
+
+    <div class="vip-table-wrap">
+      <!-- Table Head -->
+      <div class="vip-thead">
+        <div class="vip-th">
+          <span class="vip-th-icon">🪙</span>
+          <span class="vip-th-label">Recharge</span>
+        </div>
+        <div class="vip-th">
+          <span class="vip-th-icon">👑</span>
+          <span class="vip-th-label">VIP × 7D</span>
+        </div>
+        <div class="vip-th">
+          <span class="vip-th-icon">🖼</span>
+          <span class="vip-th-label">Customized Frame</span>
+        </div>
+        <div class="vip-th">
+          <span class="vip-th-icon">🪪</span>
+          <span class="vip-th-label">Special ID × 7D</span>
+        </div>
+      </div>
+
+      <!-- Table Body (filled by JS) -->
+      <div class="vip-tbody" id="vip-tbody">
+        <!-- loading -->
+        <div id="vip-loading" style="padding:40px;text-align:center">
+          <div class="loading-spinner" style="margin:0 auto 10px"></div>
+          <div class="loading-txt">Loading tiers...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div class="rules-section section-block" id="rules-block">
+    <div class="rules-card">
+      <div class="rules-header">
+        <div class="rules-badge">★ &nbsp; RULES &nbsp; ★</div>
+      </div>
+      <div id="rules-list">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-brand">RIZZ LIVE · INDIA · VIP CARNIVAL</div>
+    <div class="india-flag">
+      <div class="fs" style="background:#ff9933"></div>
+      <div class="fs" style="background:#fff;position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3px;height:3px;border-radius:50%;background:#000080"></div></div>
+      <div class="fs" style="background:#138808"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Stars
+(function(){
+  const sf = document.getElementById('star-field');
+  const bsf = document.getElementById('bg-stars');
+  function makeStars(el, n){
+    for(let i=0;i<n;i++){
+      const s=document.createElement('div'); s.className='star';
+      const sz=Math.random()*2.2+.4;
+      s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${(Math.random()*5+2).toFixed(1)}s;--delay:${(Math.random()*6).toFixed(1)}s;--op:${(Math.random()*.65+.25).toFixed(2)}`;
+      el.appendChild(s);
+    }
+  }
+  makeStars(sf,120);
+  if(bsf) makeStars(bsf,80);
+})();
+
+// ── VIP tier class mapping
+const VIP_CLASS = {
+  'Ranger':'vip-ranger','Knight':'vip-knight','Lord':'vip-lord',
+  'Duke':'vip-duke','King':'vip-king','Emperor':'vip-emperor'
+};
+const TIER_ROW_CLASS = { 'King':'tier-king','Emperor':'tier-emperor' };
+
+function buildRow(tier){
+  const hasFrame = tier.frameEnabled;
+  const hasDp = tier.dp && tier.dp.trim();
+  const hasFramePng = tier.framePng && tier.framePng.trim();
+  const hasSpecialId = tier.specialId && tier.specialId.trim() && tier.specialId !== '-';
+  const vipCls = VIP_CLASS[tier.vipName] || 'vip-lord';
+  const rowCls = TIER_ROW_CLASS[tier.vipName] || '';
+
+  // Frame cell content
+  let frameCellHtml = '';
+  if(hasFrame){
+    let dpHtml = '';
+    if(hasDp){
+      dpHtml = `<div class="frame-dp-wrap">
+        <img class="frame-dp-img" src="${tier.dp}" alt="" onerror="this.parentNode.innerHTML='<div class=frame-no-dp>👤</div>'">
+        ${hasFramePng ? `<img class="frame-png-overlay" src="${tier.framePng}" alt="">` : ''}
+      </div>`;
+    } else {
+      dpHtml = `<div class="frame-dp-wrap"><div class="frame-no-dp">👤</div></div>`;
+    }
+    frameCellHtml = `<div class="frame-content">${dpHtml}<div class="frame-yes-badge">✓ Yes</div></div>`;
+  } else {
+    frameCellHtml = `<div class="frame-no-badge">—</div>`;
+  }
+
+  // Special ID cell
+  let idHtml = '';
+  if(hasSpecialId){
+    idHtml = `<div class="special-id-val has-id">${esc(tier.specialId)}</div>`;
+  } else {
+    idHtml = `<div class="special-id-dash">—</div>`;
+  }
+
+  return `<div class="vip-row ${rowCls}">
+    <div class="vip-cell">
+      <div class="recharge-val">${esc(tier.recharge)}</div>
+      <div class="recharge-suffix">Coins</div>
+    </div>
+    <div class="vip-cell">
+      <div class="vip-name-badge ${vipCls}">👑 ${esc(tier.vipName)}</div>
+    </div>
+    <div class="vip-cell">${frameCellHtml}</div>
+    <div class="vip-cell">${idHtml}</div>
+  </div>`;
+}
+
+function buildRules(rules){
+  const el = document.getElementById('rules-list');
+  if(!rules || !rules.length){ el.innerHTML=''; return; }
+  el.innerHTML = rules.map((r,i) => `<div class="rule-item"><div class="rule-num">${i+1}</div><div class="rule-text">${esc(r)}</div></div>`).join('');
+}
+
+async function loadData(){
+  let data = null;
+  try {
+    const res = await fetch('./rizz-vip.json?v='+Date.now());
+    if(res.ok){ const t=await res.text(); if(t&&t.trim()!=='{}') data=JSON.parse(t); }
+  } catch(e){}
+
+  // Mascot
+  if(data && data.mascot){
+    const img = document.getElementById('mascot-img');
+    const fb = document.getElementById('mascot-fallback');
+    img.src = data.mascot;
+    img.style.display = 'block';
+    fb.style.display = 'none';
+    img.onerror = ()=>{ img.style.display='none'; fb.style.display='flex'; };
+  }
+
+  // Title
+  if(data && data.title) document.getElementById('hero-title-text').textContent = data.title;
+  if(data && data.tagline) document.getElementById('hero-tagline-text').textContent = data.tagline;
+  if(data && data.weekTitle) document.getElementById('section-week-title').textContent = data.weekTitle;
+
+  // Tiers
+  const tbody = document.getElementById('vip-tbody');
+  const tiers = (data && data.tiers) ? data.tiers : getDefaultTiers();
+  tbody.innerHTML = tiers.map(buildRow).join('');
+
+  // Rules
+  const rules = (data && data.rules) ? data.rules : [
+    'Rewards will be sent every week before Wednesday.',
+    'Special ID & customized frame needs to be applied by the user via official.',
+    'Recharge will be calculated based on both online & offline.'
+  ];
+  buildRules(rules);
+
+  // Animate sections
+  ['hero-block','table-block','rules-block'].forEach((id,i)=>{
+    setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('visible'); }, i*150+100);
+  });
+}
+
+function getDefaultTiers(){
+  return [
+    {recharge:'300K',vipName:'Ranger',frameEnabled:false,dp:'',framePng:'',specialId:'-'},
+    {recharge:'700K',vipName:'Knight',frameEnabled:false,dp:'',framePng:'',specialId:'-'},
+    {recharge:'1M',vipName:'Lord',frameEnabled:false,dp:'',framePng:'',specialId:'6 Digits'},
+    {recharge:'3M',vipName:'Duke',frameEnabled:false,dp:'',framePng:'',specialId:'5 Digits'},
+    {recharge:'5M',vipName:'King',frameEnabled:true,dp:'',framePng:'',specialId:'4 Digits'},
+    {recharge:'10M',vipName:'Emperor',frameEnabled:true,dp:'',framePng:'',specialId:'3 Digits'},
+  ];
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ── Intro → Main
+function enterMain(){
+  const intro = document.getElementById('intro');
+  const main = document.getElementById('main');
+  intro.classList.add('out');
+  setTimeout(()=>{
+    intro.style.display='none';
+    main.style.display='block';
+    loadData();
+    window.scrollTo(0,0);
+  }, 900);
+}
+setTimeout(enterMain, 4000);
+</script>
+</body>
+</html>
