@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Rizz Live VIP Carnival</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700;800&family=Righteous&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0d0221;
+      --bg-gradient: linear-gradient(180deg, #0d0221 0%, #1a0d2e 50%, #0d0221 100%);
+      --primary: #d946ef;
+      --primary-light: #ec4899;
+      --accent-gold: #fbbf24;
+      --accent-cyan: #06b6d4;
+      --text-main: #ffffff;
+      --text-muted: #b4a7d6;
+      --border: #7c3aed;
+      --border-light: #a78bfa;
+      --table-bg: #1a0d2e;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, #d946ef15 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, #06b6d415 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -30px); }
+    }
+
+    /* ═══════════════════════════════
+       HEADER
+    ═══════════════════════════════ */
+    .header {
+      background: linear-gradient(180deg, rgba(217, 70, 239, 0.15) 0%, rgba(217, 70, 239, 0.05) 100%);
+      border-bottom: 3px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ec4899, var(--primary), #ec4899, transparent);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.8);
+    }
+
+    .header-logo {
+      font-family: 'Righteous', sans-serif;
+      font-size: clamp(36px, 10vw, 56px);
+      background: linear-gradient(135deg, #ec4899, #d946ef, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-shadow: 0 0 40px rgba(217, 70, 239, 0.5);
+      filter: drop-shadow(0 0 20px rgba(217, 70, 239, 0.3));
+    }
+
+    .header-subtitle {
+      font-size: 16px;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fbbf24, #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-tagline {
+      font-size: 18px;
+      color: var(--accent-gold);
+      margin-top: 12px;
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+
+    /* ═══════════════════════════════
+       CONTAINER
+    ═══════════════════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* ═══════════════════════════════
+       LOADING & ERROR STATES
+    ═══════════════════════════════ */
+    .loading-state, .error-state {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-state {
+      color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      border-radius: 12px;
+      padding: 40px 20px;
+    }
+
+    /* ═══════════════════════════════
+       TIERS SECTION
+    ═══════════════════════════════ */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      color: var(--accent-gold);
+      margin: 50px 0 30px;
+      text-align: center;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    }
+
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .tier-card {
+      background: linear-gradient(135deg, rgba(26, 13, 46, 0.9), rgba(20, 10, 40, 0.9));
+      border: 3px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2), inset 0 0 20px rgba(217, 70, 239, 0.05);
+    }
+
+    .tier-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0%, rgba(217, 70, 239, 0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .tier-card:hover {
+      transform: translateY(-12px);
+      border-color: #ec4899;
+      box-shadow: 0 20px 60px rgba(236, 72, 153, 0.4), inset 0 0 30px rgba(217, 70, 239, 0.1);
+      background: linear-gradient(135deg, rgba(36, 23, 56, 0.95), rgba(30, 15, 50, 0.95));
+    }
+
+    .tier-card:hover::before {
+      opacity: 1;
+    }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .tier-badge {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      min-width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      box-shadow: 0 8px 20px rgba(217, 70, 239, 0.3);
+    }
+
+    .tier-info h3 {
+      font-family: 'Righteous', sans-serif;
+      font-size: 18px;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .tier-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tier-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tier-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+    }
+
+    .tier-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .tier-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tier-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .tier-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tier-value.highlight {
+      color: var(--accent-cyan);
+      font-size: 16px;
+    }
+
+    /* ═══════════════════════════════
+       FRAME & DP DISPLAY
+    ═══════════════════════════════ */
+    .tier-visuals {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(167, 139, 250, 0.2);
+      min-height: 120px;
+    }
+
+    .visual-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.4));
+    }
+
+    .dp-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-light);
+      box-shadow: 0 0 20px rgba(217, 70, 239, 0.4), inset 0 0 20px rgba(217, 70, 239, 0.2);
+    }
+
+    .visual-label {
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+
+    /* ═══════════════════════════════
+       RECHARGE TABLE
+    ═══════════════════════════════ */
+    .recharge-section {
+      margin-top: 50px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 20px;
+      border: 3px solid var(--border);
+      background: linear-gradient(135deg, rgba(26, 13, 46, 0.8), rgba(20, 10, 40, 0.8));
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.3);
+    }
+
+    .recharge-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: linear-gradient(180deg, rgba(26, 13, 46, 0.9), rgba(20, 10, 40, 0.9));
+    }
+
+    .recharge-table thead {
+      background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(124, 58, 237, 0.2));
+      border-bottom: 3px solid var(--border);
+    }
+
+    .recharge-table th {
+      padding: 18px 14px;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-weight: 800;
+    }
+
+    .recharge-table td {
+      padding: 16px 14px;
+      text-align: center;
+      border-bottom: 2px solid rgba(124, 58, 237, 0.2);
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .recharge-table tbody tr {
+      transition: all 0.3s;
+      background: transparent;
+    }
+
+    .recharge-table tbody tr:hover {
+      background: rgba(217, 70, 239, 0.15);
+    }
+
+    .recharge-amount {
+      color: var(--accent-gold);
+      font-family: 'Righteous', sans-serif;
+      font-size: 16px;
+    }
+
+    .recharge-coins {
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .popular-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent-gold), #f59e0b);
+      color: #000;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-empty {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════
+       RULES SECTION
+    ═══════════════════════════════ */
+    .rules-section {
+      margin-top: 50px;
+      margin-bottom: 40px;
+    }
+
+    .rules-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .rule-card {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(217, 70, 239, 0.1));
+      border: 3px solid rgba(251, 191, 36, 0.4);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(251, 191, 36, 0.15);
+    }
+
+    .rule-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--primary), var(--accent-cyan));
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 18px 18px 0 0;
+    }
+
+    .rule-card:hover {
+      border-color: var(--accent-gold);
+      box-shadow: 0 12px 36px rgba(251, 191, 36, 0.25);
+    }
+
+    .rule-card:hover::before {
+      opacity: 1;
+    }
+
+    .rule-number {
+      font-family: 'Righteous', sans-serif;
+      font-size: 42px;
+      color: var(--accent-gold);
+      margin-bottom: 12px;
+      font-weight: 900;
+      text-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+    }
+
+    .rule-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 768px) {
+      .header-logo {
+        font-size: 32px;
+      }
+
+      .tiers-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .tier-visuals {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .recharge-table {
+        font-size: 12px;
+      }
+
+      .recharge-table th,
+      .recharge-table td {
+        padding: 12px 8px;
+      }
+
+      .rules-container {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 22px;
+        margin: 30px 0 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 20px 16px;
+      }
+
+      .header-tagline {
+        font-size: 14px;
+      }
+
+      .tier-card {
+        padding: 16px;
+      }
+
+      .tier-row {
+        grid-template-columns: 1fr;
+      }
+
+      .recharge-amount {
+        font-size: 14px;
+      }
+
+      .rule-number {
+        font-size: 28px;
+      }
+
+      .rule-text {
+        font-size: 13px;
+      }
+    }
+
+    /* ═══════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════ */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tier-card {
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+
+    .tier-card:nth-child(1) { animation-delay: 0.1s; }
+    .tier-card:nth-child(2) { animation-delay: 0.2s; }
+    .tier-card:nth-child(3) { animation-delay: 0.3s; }
+    .tier-card:nth-child(4) { animation-delay: 0.4s; }
+    .tier-card:nth-child(5) { animation-delay: 0.5s; }
+    .tier-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .rule-card {
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+
+    .rule-card:nth-child(1) { animation-delay: 0.1s; }
+    .rule-card:nth-child(2) { animation-delay: 0.2s; }
+    .rule-card:nth-child(3) { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-logo">🎪 RIZZ LIVE</div>
+    <div class="header-subtitle">★ WEEKLY - RIZZ LIVE VIP CARNIVAL ★</div>
+    <div class="header-tagline">RECHARGE MORE, UNLOCK MORE!</div>
+  </div>
+
+  <div class="container">
+    <!-- LOADING STATE -->
+    <div id="loadingState" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Loading VIP Carnival data...</p>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div id="errorState" class="error-state" style="display: none;">
+      <p>⚠️ Unable to load VIP Carnival data. Please check your connection.</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="mainContent" style="display: none;">
+      <!-- TIERS SECTION -->
+      <div class="section-title">💎 VIP TIERS</div>
+      <div class="tiers-grid" id="tiersGrid"></div>
+
+      <!-- RECHARGE TABLE -->
+      <div class="recharge-section">
+        <div class="section-title">💲 RECHARGE OPTIONS</div>
+        <div class="table-wrapper">
+          <table class="recharge-table">
+            <thead>
+              <tr>
+                <th>💰 Amount (INR)</th>
+                <th>🪙 Coins</th>
+                <th>🔥 Popular Tag</th>
+              </tr>
+            </thead>
+            <tbody id="rechargeTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RULES SECTION -->
+      <div class="rules-section">
+        <div class="section-title">⭐ RULES</div>
+        <div class="rules-container" id="rulesContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════
+    // CONFIGURATION
+    // ═══════════════════════════════════════════════════
+    const CONFIG = {
+      // Admin panel default password for reference
+      dataUrl: './rizz-data.json', // Path to exported JSON
+      sellersUrl: './rizz-sellers.json', // Path to sellers JSON
+      fallbackSellersUrl: './rizz-sellers.json',
+    };
+
+    // ═══════════════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════════════
+    let honourData = null;
+    let sellersData = null;
+
+    // ═══════════════════════════════════════════════════
+    // FETCH DATA
+    // ═══════════════════════════════════════════════════
+    async function loadData() {
+      try {
+        // Try to fetch honour wall data
+        const honourResponse = await fetch(CONFIG.dataUrl);
+        if (!honourResponse.ok) throw new Error('Honour data not found');
+        honourData = await honourResponse.json();
+
+        // Try to fetch sellers data
+        try {
+          const sellersResponse = await fetch(CONFIG.sellersUrl);
+          if (sellersResponse.ok) {
+            sellersData = await sellersResponse.json();
+          }
+        } catch (e) {
+          console.warn('Sellers data not found, using defaults');
+        }
+
+        renderPage();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('errorState').style.display = 'block';
+      }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // RENDER PAGE
+    // ═══════════════════════════════════════════════════
+    function renderPage() {
+      // Define tier data (from admin panel structure)
+      const TIER_CONFIG = [
+        { rank: 1, label: '🥇 GOLD', minAmount: 300000, tier: 'Ranger' },
+        { rank: 2, label: '🥈 SILVER', minAmount: 700000, tier: 'Knight' },
+        { rank: 3, label: '🥉 BRONZE', minAmount: 1000000, tier: 'Lord' },
+      ];
+
+      // Get recharger section data (Top Rechargers with frame & DP)
+      const rechargerSection = honourData?.sections?.recharger;
+      const tiersHtml = TIER_CONFIG.map(tier => {
+        const rankData = rechargerSection?.ranks?.[tier.rank] || {};
+        
+        const dpHtml = rankData.dp ? `
+          <div class="visual-container">
+            <img src="${rankData.dp}" alt="${rankData.name}" class="dp-image">
+            <div class="visual-label">DP</div>
+          </div>
+        ` : '';
+
+        const frameHtml = rankData.frame ? `
+          <div class="visual-container">
+            <div class="frame-wrapper">
+              <img src="${rankData.frame}" alt="Frame" class="frame-image">
+              <div class="visual-label">Frame</div>
+            </div>
+          </div>
+        ` : '';
+
+        const visualsHtml = dpHtml || frameHtml ? `
+          <div class="tier-visuals">
+            ${frameHtml}
+            ${dpHtml}
+          </div>
+        ` : '';
+
+        return `
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-badge">${tier.rank}</div>
+              <div class="tier-info">
+                <h3>${tier.tier}</h3>
+                <div class="tier-subtitle">${tier.label}</div>
+              </div>
+            </div>
+            
+            <div class="tier-content">
+              <div class="tier-row">
+                <div class="tier-item">
+                  <span class="tier-label">Recharge Amount</span>
+                  <span class="tier-value highlight">₹ ${(rankData.stat || '—').toLocaleString()}</span>
+                </div>
+                <div class="tier-item">
+                  <span class="tier-label">Person Name</span>
+                  <span class="tier-value">${rankData.name || '—'}</span>
+                </div>
+              </div>
+            </div>
+            
+            ${visualsHtml}
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('tiersGrid').innerHTML = tiersHtml;
+
+      // Render recharge table
+      const priceList = sellersData?.priceList || [];
+      const rechargeHtml = priceList.length > 0 ? priceList.map(price => `
+        <tr>
+          <td class="recharge-amount">${price.inr || '—'}</td>
+          <td class="recharge-coins">${price.coins || '—'}</td>
+          <td>
+            ${price.popular ? `<span class="popular-badge">⭐ ${price.popularTag || '★ Popular'}</span>` : '<span class="status-empty">—</span>'}
+          </td>
+        </tr>
+      `).join('') : `
+        <tr>
+          <td colspan="3" class="status-empty">No recharge data available</td>
+        </tr>
+      `;
+
+      document.getElementById('rechargeTableBody').innerHTML = rechargeHtml;
+
+      // Render rules
+      const rulesContent = [
+        'Rewards will be sent every week before Wednesday.',
+        'Special ID & customized frame needs to be applied by the user via admin.',
+        'Recharge will be calculated based on both online & offline.'
+      ];
+
+      const rulesHtml = rulesContent.map((rule, idx) => `
+        <div class="rule-card">
+          <div class="rule-number">${idx + 1}</div>
+          <div class="rule-text">${rule}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('rulesContainer').innerHTML = rulesHtml;
+
+      // Show main content
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
+
+    // ═══════════════════════════════════════════════════
+    // INITIALIZE
+    // ═══════════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>
