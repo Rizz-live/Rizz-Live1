@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -293,9 +293,7 @@ body{font-family:'Rajdhani',sans-serif;color:var(--text)}
 /* Footer */
 .page-footer{text-align:center;padding:22px 16px 18px;border-top:1px solid rgba(255,255,255,.03);position:relative}
 .page-footer::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.18),transparent)}
-.footer-brand{font-family:'Cinzel Decorative',cursive;font-size:7px;font-weight:700;color:rgba(255,215,0,.1);letter-spacing:5px;margin-bottom:10px}
-.india-flag{display:flex;align-items:center;justify-content:center;gap:2px}
-.fs{width:20px;height:4px;border-radius:1px}
+.footer-brand{font-family:'Cinzel Decorative',cursive;font-size:7px;font-weight:700;color:rgba(255,215,0,.1);letter-spacing:5px;margin-bottom:6px}
 
 @media(max-width:400px){
   .top3-row{gap:3px;padding:8px 3px 13px}
@@ -397,7 +395,7 @@ body{font-family:'Rajdhani',sans-serif;color:var(--text)}
       <div class="hw-orn-line r"></div>
     </div>
 
-    <div class="intro-tagline">🇮🇳 &nbsp; India's #1 Live Platform &nbsp; 🇮🇳</div>
+    <div class="intro-tagline">#1 Live Platform</div>
     <div class="intro-progress-wrap"><div class="intro-progress-bar"></div></div>
   </div>
 </div>
@@ -417,7 +415,7 @@ body{font-family:'Rajdhani',sans-serif;color:var(--text)}
     <div class="hdr-center">
       <div class="hdr-title-main">HONOUR WALL</div>
       <div class="hdr-title-line"></div>
-      <div class="hdr-title-sub">India's #1 Platform</div>
+      <div class="hdr-title-sub">Top Performers</div>
     </div>
     <div style="width:70px;flex-shrink:0"></div>
   </div>
@@ -425,7 +423,7 @@ body{font-family:'Rajdhani',sans-serif;color:var(--text)}
   <div class="hero-banner">
     <div class="hero-week-badge">🏆 &nbsp; Weekly Champions</div>
     <div class="hero-title">Weekly Honour Wall</div>
-    <div class="hero-sub">India's Top Performers</div>
+    <div class="hero-sub">Top Performers</div>
   </div>
 
   <div id="sections-container">
@@ -436,12 +434,7 @@ body{font-family:'Rajdhani',sans-serif;color:var(--text)}
   </div>
 
   <div class="page-footer">
-    <div class="footer-brand">RIZZ LIVE · INDIA · WEEKLY HONOURS</div>
-    <div class="india-flag">
-      <div class="fs" style="background:#ff9933"></div>
-      <div class="fs" style="background:#fff;position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3px;height:3px;border-radius:50%;background:#000080"></div></div>
-      <div class="fs" style="background:#138808"></div>
-    </div>
+    <div class="footer-brand">RIZZ LIVE · WEEKLY HONOURS</div>
   </div>
 </div>
 
@@ -508,7 +501,7 @@ function startConfetti(){
   let W,H;
   function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
   resize();window.addEventListener('resize',resize);
-  const COLORS=['#ffd700','#ff9933','#ff3d7f','#b44fff','#00e5ff','#fff','#138808'];
+  const COLORS=['#ffd700','#ff9933','#ff3d7f','#b44fff','#00e5ff','#fff'];
   const bits=Array.from({length:90},()=>({
     x:Math.random()*window.innerWidth,y:-20-Math.random()*window.innerHeight,
     w:Math.random()*8+3,h:Math.random()*5+2,color:COLORS[Math.floor(Math.random()*COLORS.length)],
