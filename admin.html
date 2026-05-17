@@ -140,7 +140,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
 .seller-dp-placeholder{width:80px;height:80px;border-radius:50%;background:#0a0a20;border:2px dashed #22c55e40;display:flex;align-items:center;justify-content:center;font-size:28px}
 .seller-dp-upload{position:relative;overflow:hidden}
 .seller-dp-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-/* Seller frame preview */
 .seller-dp-frame-wrap{position:relative;width:80px;height:80px;margin:0 auto}
 .seller-frame-overlay{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);object-fit:contain;pointer-events:none;z-index:2;display:none}
 .seller-fields{display:flex;flex-direction:column;gap:0}
@@ -326,7 +325,7 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
       <div class="price-list-editor">
         <div class="price-list-title">💲 Coin Price List</div>
         <table class="price-table" id="price-table">
-          <thead><tr><th>Amount (INR ₹)</th><th>Coins</th><th>Popular Tag</th><th></th></tr></thead>
+          <thead><tr><th>Amount (₹)</th><th>Coins</th><th>Popular Tag</th><th></th></tr></thead>
           <tbody id="price-tbody"></tbody>
         </table>
         <button class="add-row-btn" onclick="addPriceRow()">+ Row Add Karo</button>
@@ -345,7 +344,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
         📋 <strong>Flow:</strong> Data bharo → <strong>SAVE ALL</strong> → <strong>VIP JSON</strong> export → <code>rizz-vip.json</code> GitHub mein upload.
       </div>
 
-      <!-- Mascot -->
       <div class="vip-mascot-section">
         <div>
           <img id="vip-mascot-preview" class="vip-mascot-preview" src="" alt="Mascot">
@@ -367,7 +365,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
         </div>
       </div>
 
-      <!-- Page Info -->
       <div class="vip-info-card">
         <div class="vip-info-title">📝 Page Info</div>
         <div class="field-label">EVENT TITLE</div>
@@ -381,7 +378,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
         <div style="font-size:9px;color:var(--muted);margin-top:4px">VIP table mein 3rd column ka heading yahan se change hoga</div>
       </div>
 
-      <!-- Tiers -->
       <div style="margin-bottom:16px">
         <div class="vip-section-header">
           <div class="vip-section-title">🏅 VIP Tiers</div>
@@ -389,7 +385,6 @@ body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min
         <div class="vip-tiers-wrap" id="vip-tiers-wrap"></div>
       </div>
 
-      <!-- Rules -->
       <div class="rules-editor">
         <div class="rules-editor-title">📋 Rules</div>
         <div id="rules-editor-list"></div>
@@ -494,14 +489,12 @@ const SELLER_DP_MAX=280,SELLER_DP_QUALITY=0.75;
 const MASCOT_MAX=400,MASCOT_QUALITY=0.88;
 const TIER_DP_MAX=220,TIER_DP_QUALITY=0.72;
 
+// ✅ Only 4 sections — Gifter, New Agency, Agency App Time removed
 const SECTIONS=[
   {key:'agency',emoji:'🏆',title:'Top 3 Agency',week:'Week 1st',statLabel:'Ruby Target',statType:'ruby'},
   {key:'host',emoji:'🎤',title:'Top 3 Host',week:'Week 1st',statLabel:'Ruby Target',statType:'ruby'},
   {key:'recharger',emoji:'💰',title:'Top 3 Recharger',week:'Week 1st',statLabel:'Weekly Recharge',statType:'coin'},
-  {key:'gifter',emoji:'🎁',title:'Top 3 Gifter',week:'Week 1st',statLabel:'Ruby',statType:'ruby'},
   {key:'activehost',emoji:'🔴',title:'Top 3 Active Host',week:'Most Live Time',statLabel:'Live Time',statType:'clock'},
-  {key:'newagency',emoji:'🌟',title:'New Top 3 Agency',week:'New Agency — Week 1st',statLabel:'Ruby Target',statType:'ruby'},
-  {key:'agencytime',emoji:'⏱',title:'Top 3 Agency App Time',week:'Most App Time',statLabel:'App Time',statType:'clock'},
 ];
 const RANKS=[1,2,3];
 const RANK_LABEL={1:'🥇 GOLD',2:'🥈 SILVER',3:'🥉 BRONZE'};
@@ -559,7 +552,6 @@ function getJSONString(){return JSON.stringify(state,null,2);}
 function getSellersJSONString(){return JSON.stringify(sellersState,null,2);}
 function getVipJSONString(){return JSON.stringify(vipState,null,2);}
 
-// Compress
 function compressImage(file,maxPx,quality,forcePNG){
   return new Promise((resolve,reject)=>{
     const reader=new FileReader();reader.onerror=reject;
@@ -637,7 +629,6 @@ async function handleLogoUpload(inp){
   }catch(e){hideProgress();showToast('❌ Logo error');}
 }
 
-// HONOUR
 let activeTab=0;
 function renderTabs(){
   const tabsEl=document.getElementById('tabs');tabsEl.innerHTML='';
@@ -714,7 +705,6 @@ async function handleFrame(inp,key,r){
 function clearDP(key,r){if(!confirm('DP hata dein?'))return;ensureRank(key,r);state.sections[key].ranks[r].dp='';saveState();updateSizeMeter();renderHonourSection();}
 function clearFrame(key,r){if(!confirm('Frame hata dein?'))return;ensureRank(key,r);state.sections[key].ranks[r].frame='';saveState();updateSizeMeter();renderHonourSection();}
 
-// SELLERS
 function renderPriceList(){
   const tbody=document.getElementById('price-tbody');tbody.innerHTML='';
   (sellersState.priceList||[]).forEach((row,i)=>{
@@ -811,7 +801,6 @@ async function handleSellerFrame(inp,i){
 function clearSellerDP(i){sellersState.sellers[i].dp='';saveState();updateSizeMeter();renderSellerCards();showToast('DP hataya!');}
 function clearSellerFrame(i){sellersState.sellers[i].framePng='';saveState();updateSizeMeter();renderSellerCards();showToast('Frame hataya!');}
 
-// VIP
 async function handleMascotUpload(inp){
   const file=inp.files[0];if(!file)return;showProgress('Mascot upload...',40);
   try{const isPngFile=file.type==='image/png'||file.type==='image/webp';
