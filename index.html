@@ -194,7 +194,7 @@ body{font-family:'Inter',sans-serif;color:var(--text-primary);line-height:1.6;-w
 /* Cards */
 .top-card{
   display:flex;flex-direction:column;align-items:center;
-  border-radius:20px;padding:10px 5px 11px;
+  border-radius:20px;padding:12px 6px 13px;
   position:relative;flex:1;min-width:0;
   animation:cardIn .65s cubic-bezier(.34,1.2,.64,1) both;
   transition:transform .25s ease;overflow:visible;
@@ -265,21 +265,21 @@ body{font-family:'Inter',sans-serif;color:var(--text-primary);line-height:1.6;-w
 .rank3 .card-name{color:#2a2a2a}
 
 /* Stat chip */
-.stat-chip{display:flex;align-items:center;gap:6px;border-radius:12px;padding:6px 7px;width:100%;position:relative;overflow:hidden;background:rgba(250,250,248,.8);border:1px solid var(--border)}
+.stat-chip{display:flex;align-items:center;gap:6px;border-radius:12px;padding:6px 8px;width:100%;position:relative;overflow:visible;background:rgba(250,250,248,.8);border:1px solid var(--border)}
 .chip-ruby{background:linear-gradient(135deg,rgba(220,100,140,.05),rgba(220,100,140,.08));border:1px solid rgba(220,100,140,.25)}
 .chip-coin{background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(212,175,55,.1));border:1px solid rgba(212,175,55,.3)}
 .chip-clock{background:linear-gradient(135deg,rgba(70,130,180,.05),rgba(70,130,180,.08));border:1px solid rgba(70,130,180,.25)}
-.chip-icon-wrap{width:25px;height:25px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chip-icon-wrap{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .chip-ruby .chip-icon-wrap{background:rgba(220,100,140,.1);border:1px solid rgba(220,100,140,.2)}
 .chip-coin .chip-icon-wrap{background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25)}
 .chip-clock .chip-icon-wrap{background:rgba(70,130,180,.1);border:1px solid rgba(70,130,180,.2)}
-.stat-body{display:flex;flex-direction:column;min-width:0;flex:1}
-.stat-label{font-size:6.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:1px}
+.stat-body{display:flex;flex-direction:column;min-width:0;flex:1;gap:0px}
+.stat-label{font-size:6px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:0px;line-height:1.2}
 .chip-ruby .stat-label{color:rgba(150,50,80,.8)}
 .chip-coin .stat-label{color:var(--gold-dark)}
 .chip-clock .stat-label{color:rgba(40,80,120,.8)}
-.stat-val{font-family:'Sora',sans-serif;font-size:14px;letter-spacing:1px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
-.rank1 .stat-val{font-size:15px}
+.stat-val{font-family:'Sora',sans-serif;font-size:13px;letter-spacing:.5px;line-height:1.1;white-space:normal;word-break:break-word;font-weight:700}
+.rank1 .stat-val{font-size:13.5px}
 .chip-ruby .stat-val{color:#d46a7f}
 .chip-coin .stat-val{color:var(--gold-dark)}
 .chip-clock .stat-val{color:#4682b4}
@@ -305,7 +305,7 @@ body{font-family:'Inter',sans-serif;color:var(--text-primary);line-height:1.6;-w
 
 @media(max-width:400px){
   .top3-row{gap:3px;padding:8px 3px 13px}
-  .top-card{padding:9px 4px 10px;border-radius:16px}
+  .top-card{padding:11px 5px 12px;border-radius:16px}
   .dp-wrap.big{width:66px;height:66px}
   .dp-wrap.sm{width:54px;height:54px}
   .crown-ico{font-size:17px}
@@ -313,11 +313,11 @@ body{font-family:'Inter',sans-serif;color:var(--text-primary);line-height:1.6;-w
   .rank1 .card-name{font-size:10px}
   .tier-label{padding:2px 7px 2px 5px}
   .tier-txt{font-size:7px;letter-spacing:1px}
-  .stat-chip{padding:5px 5px;gap:4px}
-  .chip-icon-wrap{width:22px;height:22px;border-radius:6px}
-  .stat-val{font-size:12px}
-  .rank1 .stat-val{font-size:13px}
-  .stat-label{font-size:6px}
+  .stat-chip{padding:5px 6px;gap:4px}
+  .chip-icon-wrap{width:20px;height:20px;border-radius:5px}
+  .stat-val{font-size:11px}
+  .rank1 .stat-val{font-size:12px}
+  .stat-label{font-size:5.5px}
   .hw-line1{font-size:28px;letter-spacing:6px}
   .hw-line2{font-size:17px;letter-spacing:12px}
   .hero-title{font-size:17px}
