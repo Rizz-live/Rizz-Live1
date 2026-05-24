@@ -682,9 +682,12 @@ function saveAll() {
   try {
     saveData(d);
     updateStats(d);
+    // Download both files with proper timing
     downloadJSON(d, 'recharge-arena-data.json');
-    setTimeout(()=>downloadJSON(hw,'rizz-data.json'), 600);
-    showToast('💾 Saved! Dono JSON files download ho rahi hain ✅','success');
+    setTimeout(()=>{
+      downloadJSON(hw,'rizz-data.json');
+      showToast('💾 Saved! Dono JSON files download ho rahi hain ✅','success');
+    }, 300);
   } catch(err) { showToast('❌ Save failed: '+err.message,'error'); }
 }
 
@@ -692,14 +695,29 @@ function exportAllJSON() {
   const d = loadData();
   const ra = Object.assign({},d,{logoUrl:localStorage.getItem(KEY_LOGO)||'',exclusiveFrameUrl:localStorage.getItem(KEY_EXCL)||'',vipRewards:(d.vipRewards||[]).map((r,i)=>Object.assign({},r,{frameUrl:localStorage.getItem(KEY_VIP+i)||r.frameUrl||''}))});
   downloadJSON(ra,'recharge-arena-data.json');
-  setTimeout(()=>downloadJSON(getHwData(),'rizz-data.json'),600);
-  showToast('⬇ Dono JSON files export ho rahi hain!','success');
+  setTimeout(()=>{
+    downloadJSON(getHwData(),'rizz-data.json');
+    showToast('⬇ Dono JSON files export ho rahi hain!','success');
+  }, 300);
 }
 
 function downloadJSON(data, filename) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
-  a.download = filename; a.click();
+  try {
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    // Clean up the object URL after a delay
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+  } catch(err) {
+    console.error('Download error:', err);
+    showToast('❌ Download failed: '+err.message,'error');
+  }
 }
 
 // RESET
