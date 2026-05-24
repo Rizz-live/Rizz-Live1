@@ -168,7 +168,7 @@ body{font-family:'DM Sans',sans-serif;background:#F0EDE4;color:var(--dark);min-h
     <div class="nav-section-label">Tools</div>
     <div class="nav-item" onclick="exportAllJSON()"><span class="nav-icon">⬇️</span> Export All JSON</div>
     <div class="nav-item" onclick="resetData()"><span class="nav-icon">🔄</span> Reset All Data</div>
-    <div class="sidebar-footer">Admin Panel v4.0 · JSON Mode</div>
+    <div class="sidebar-footer">Admin Panel v4.1 · Fixed localStorage</div>
   </aside>
 
   <div class="main">
@@ -402,9 +402,9 @@ async function testCloudinaryConnection() {
   }, 'image/jpeg');
 }
 
-// STORAGE KEYS
+// STORAGE KEYS - OPTIMIZED: Only store URLs, not full objects
 const KEY_DATA='rca_data', KEY_LOGO='rca_logo_url', KEY_EXCL='rca_excl_url';
-const KEY_VIP='rca_vip_url_', KEY_HW='rca_hw', KEY_HW_LOGO='rca_hw_logo';
+const KEY_VIP='rca_vip_url_', KEY_HW_LOGO='rca_hw_logo';
 
 // HW SECTIONS CONFIG
 const HW_SECTIONS = [
@@ -422,27 +422,52 @@ const defaults = {
   logoEmoji:"🏆", leaderboard:[], rules:'', rankingRewards:[], vipRewards:[],
   exclusiveFrameEmoji:"💎", exclusiveDesc:"This exclusive diamond frame is awarded to the <strong>Top 3 ranked players</strong>."
 };
+
 function loadData() {
   try { const r=localStorage.getItem(KEY_DATA); return r?Object.assign({},defaults,JSON.parse(r)):Object.assign({},defaults); }
   catch(e) { return Object.assign({},defaults); }
 }
-function saveData(d) { localStorage.setItem(KEY_DATA, JSON.stringify(d)); }
-function loadHW() {
-  try { const r=localStorage.getItem(KEY_HW); return r?JSON.parse(r):{brandName:'Rizz Live',sections:{}}; }
-  catch(e) { return {brandName:'Rizz Live',sections:{}}; }
+
+function saveData(d) { 
+  try {
+    localStorage.setItem(KEY_DATA, JSON.stringify(d));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError') {
+      showToast('⚠️ Storage limit — clear old data or save to JSON file', 'error');
+    }
+    throw e;
+  }
 }
-function saveHW(d) { localStorage.setItem(KEY_HW, JSON.stringify(d)); }
+
+// HW Data stored as individual URL keys only
+function getHwData() {
+  const sections = {};
+  HW_SECTIONS.forEach(cfg => {
+    const week = document.getElementById('hw-week-'+cfg.key)?.value || '';
+    const ranks = {};
+    [1,2,3].forEach(rank => {
+      ranks[rank] = {
+        name: document.getElementById('hw-name-'+cfg.key+'-'+rank)?.value || '',
+        stat: document.getElementById('hw-stat-'+cfg.key+'-'+rank)?.value || '',
+        dp: localStorage.getItem('rca_hw_dp_'+cfg.key+'_'+rank) || '',
+        frame: localStorage.getItem('rca_hw_frame_'+cfg.key+'_'+rank) || ''
+      };
+    });
+    sections[cfg.key] = { week, ranks };
+  });
+  return { logo: localStorage.getItem(KEY_HW_LOGO)||'', brandName: document.getElementById('hwBrandName')?.value||'Rizz Live', sections };
+}
 
 // INIT
 async function init() {
-  let d = loadData(), hw = loadHW();
+  let d = loadData();
   try {
     const r = await fetch('recharge-arena-data.json?t='+Date.now(),{cache:'no-store'});
     if (r.ok) { const jd=await r.json(); d=Object.assign({},defaults,jd); saveData(d); if(d.logoUrl) localStorage.setItem(KEY_LOGO,d.logoUrl); if(d.exclusiveFrameUrl) localStorage.setItem(KEY_EXCL,d.exclusiveFrameUrl); }
   } catch(e) {}
   try {
     const r = await fetch('rizz-data.json?t='+Date.now(),{cache:'no-store'});
-    if (r.ok) { const jd=await r.json(); if(jd.sections) hw.sections=jd.sections; if(jd.logo) localStorage.setItem(KEY_HW_LOGO,jd.logo); if(jd.brandName) hw.brandName=jd.brandName; saveHW(hw); }
+    if (r.ok) { const jd=await r.json(); if(jd.logo) localStorage.setItem(KEY_HW_LOGO,jd.logo); if(jd.brandName) document.getElementById('hwBrandName').value = jd.brandName; if(jd.sections) { Object.entries(jd.sections).forEach(([k,v])=>{ if(v.week) document.getElementById('hw-week-'+k).value=v.week; Object.entries(v.ranks||{}).forEach(([rk,rv])=>{if(rv.dp) localStorage.setItem('rca_hw_dp_'+k+'_'+rk,rv.dp); if(rv.frame) localStorage.setItem('rca_hw_frame_'+k+'_'+rk,rv.frame); if(rv.name) document.getElementById('hw-name-'+k+'-'+rk).value=rv.name; if(rv.stat) document.getElementById('hw-stat-'+k+'-'+rk).value=rv.stat;}); }); } }
   } catch(e) {}
 
   // Fill RA form
@@ -464,10 +489,10 @@ async function init() {
   updateStats(d);
 
   // Fill HW form
-  document.getElementById('hwBrandName').value = hw.brandName||'Rizz Live';
+  document.getElementById('hwBrandName').value = document.getElementById('hwBrandName').value || 'Rizz Live';
   const hwLogo = localStorage.getItem(KEY_HW_LOGO);
   if(hwLogo){ document.getElementById('hwLogoPreviewImg').src=hwLogo; document.getElementById('hwLogoPreviewImg').style.display='block'; document.getElementById('hwLogoEmojiFb').style.display='none'; document.getElementById('hwLogoStatus').textContent='✅ Logo uploaded'; }
-  renderHwSections(hw);
+  renderHwSections();
 }
 
 // STATS
@@ -559,31 +584,29 @@ async function handleExclusiveUpload(input) {
 }
 
 // HONOUR WALL — RENDER
-function renderHwSections(hw) {
+function renderHwSections() {
   const grid = document.getElementById('hwSectionsGrid');
   grid.innerHTML = '';
   HW_SECTIONS.forEach(cfg => {
-    const secData = (hw.sections && hw.sections[cfg.key]) || {week:'', ranks:{}};
     const card = document.createElement('div');
     card.className = 'hw-sec-card';
     card.innerHTML = `
       <div class="hw-sec-title">${cfg.emoji} ${cfg.title}</div>
       <div class="hw-sec-subtitle">Stat type: ${cfg.statLabel}</div>
-      <input class="hw-week-input" placeholder="Week label e.g. Week 1st — May 2025" id="hw-week-${cfg.key}" value="${esc(secData.week||'')}">
+      <input class="hw-week-input" placeholder="Week label e.g. Week 1st — May 2025" id="hw-week-${cfg.key}" value="">
       <div class="hw-players-grid" id="hw-players-${cfg.key}"></div>
     `;
     grid.appendChild(card);
-    renderHwPlayers(cfg.key, secData.ranks || {});
+    renderHwPlayers(cfg.key);
   });
 }
 
-function renderHwPlayers(secKey, ranks) {
+function renderHwPlayers(secKey) {
   const container = document.getElementById('hw-players-'+secKey);
   container.innerHTML = '';
   [1,2,3].forEach(rank => {
-    const rData = ranks[rank] || ranks[String(rank)] || {};
-    const dpUrl = localStorage.getItem('rca_hw_dp_'+secKey+'_'+rank) || rData.dp || rData.dpUrl || '';
-    const frameUrl = localStorage.getItem('rca_hw_frame_'+secKey+'_'+rank) || rData.frame || rData.frameUrl || '';
+    const dpUrl = localStorage.getItem('rca_hw_dp_'+secKey+'_'+rank) || '';
+    const frameUrl = localStorage.getItem('rca_hw_frame_'+secKey+'_'+rank) || '';
     const wrapper = document.createElement('div');
     wrapper.className = 'hw-player-card';
     const rankClass = rank===1?'hw-rank-1':rank===2?'hw-rank-2':'hw-rank-3';
@@ -597,8 +620,8 @@ function renderHwPlayers(secKey, ranks) {
         <input type="file" id="hw-dp-file-${secKey}-${rank}" accept="image/*" style="display:none" onchange="handleHwDpUpload(this,'${secKey}',${rank})">
       </div>
       <div class="hw-upload-hint">👆 DP upload karein</div>
-      <input class="hw-player-input" id="hw-name-${secKey}-${rank}" placeholder="Name" value="${esc(rData.name||'')}">
-      <input class="hw-player-input" id="hw-stat-${secKey}-${rank}" placeholder="Stat value" value="${esc(rData.stat||'')}">
+      <input class="hw-player-input" id="hw-name-${secKey}-${rank}" placeholder="Name" value="">
+      <input class="hw-player-input" id="hw-stat-${secKey}-${rank}" placeholder="Stat value" value="">
       <span class="hw-frame-btn" onclick="document.getElementById('hw-frame-file-${secKey}-${rank}').click()">🖼️ Upload Frame</span>
       <input type="file" id="hw-frame-file-${secKey}-${rank}" accept="image/*" style="display:none" onchange="handleHwFrameUpload(this,'${secKey}',${rank})">
     `;
@@ -638,26 +661,6 @@ async function handleHwLogoUpload(input) {
   } catch(err) { showToast('❌ '+err.message,'error'); }
 }
 
-// COLLECT HW DATA
-function collectHwData() {
-  const sections = {};
-  HW_SECTIONS.forEach(cfg => {
-    const week = document.getElementById('hw-week-'+cfg.key)?.value || '';
-    const ranks = {};
-    [1,2,3].forEach(rank => {
-      const dp = localStorage.getItem('rca_hw_dp_'+cfg.key+'_'+rank) || '';
-      const frame = localStorage.getItem('rca_hw_frame_'+cfg.key+'_'+rank) || '';
-      ranks[rank] = {
-        name: document.getElementById('hw-name-'+cfg.key+'-'+rank)?.value || '',
-        stat: document.getElementById('hw-stat-'+cfg.key+'-'+rank)?.value || '',
-        dp: dp, dpUrl: dp, frame: frame, frameUrl: frame
-      };
-    });
-    sections[cfg.key] = { week, ranks };
-  });
-  return { logo: localStorage.getItem(KEY_HW_LOGO)||'', brandName: document.getElementById('hwBrandName')?.value||'Rizz Live', sections };
-}
-
 // SAVE ALL
 function saveAll() {
   const d = {
@@ -675,9 +678,10 @@ function saveAll() {
     exclusiveFrameUrl:localStorage.getItem(KEY_EXCL)||'',
     exclusiveDesc:document.getElementById('exclusiveDesc').value
   };
-  const hw = collectHwData();
+  const hw = getHwData();
   try {
-    saveData(d); saveHW({brandName:hw.brandName,sections:hw.sections}); updateStats(d);
+    saveData(d);
+    updateStats(d);
     downloadJSON(d, 'recharge-arena-data.json');
     setTimeout(()=>downloadJSON(hw,'rizz-data.json'), 600);
     showToast('💾 Saved! Dono JSON files download ho rahi hain ✅','success');
@@ -688,7 +692,7 @@ function exportAllJSON() {
   const d = loadData();
   const ra = Object.assign({},d,{logoUrl:localStorage.getItem(KEY_LOGO)||'',exclusiveFrameUrl:localStorage.getItem(KEY_EXCL)||'',vipRewards:(d.vipRewards||[]).map((r,i)=>Object.assign({},r,{frameUrl:localStorage.getItem(KEY_VIP+i)||r.frameUrl||''}))});
   downloadJSON(ra,'recharge-arena-data.json');
-  setTimeout(()=>downloadJSON(collectHwData(),'rizz-data.json'),600);
+  setTimeout(()=>downloadJSON(getHwData(),'rizz-data.json'),600);
   showToast('⬇ Dono JSON files export ho rahi hain!','success');
 }
 
